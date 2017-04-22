@@ -1,0 +1,12 @@
+<h1>Kanjis Index</h1>
+
+<% for (let i=0; i<10; i++) { %>
+  <p><%= kanjis[i].character %></p>
+  <p><%= kanjis[i]['onJp'] %></p>
+  <p><%= kanjis[i]['onEn'] %></p>
+  <p><%= kanjis[i]['kunJp'] %></p>
+  <p><%= kanjis[i]['kunEn'] %></p>
+  <p><%= kanjis[i].meaning %></p>
+  <p><%= kanjis[i].grade %></p>
+  <p><%= kanjis[i]['writingUrl'] %></p>
+<% } %>
