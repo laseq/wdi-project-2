@@ -30,7 +30,7 @@ rp(options)
         kunJp: item.kanji.kunyomi.hiragana || 'No data',
         kunEn: item.kanji.kunyomi.romaji || 'No data',
         meaning: item.kanji.meaning.english || 'No data',
-        grade: item.references.grade || 'No data',
+        grade: item.references.grade || '7',
         writingUrl: item.kanji.video.mp4 || 'No data'
       });
     })
@@ -46,4 +46,7 @@ rp(options)
   .catch(function (err) {
     // API call failed...
     console.log('Error in .then(json)', err);
+  })
+  .finally(() => {
+    mongoose.connection.close();
   });

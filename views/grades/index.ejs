@@ -1,10 +1,10 @@
-<h1>Kanjis Index</h1>
+<h1>Grades Index</h1>
 
 <% let total = 0; %>
 <% let gradeNotFound = 0; %>
 <% let kanjisWithoutGrade = []; %>
 <% let gradeCount = []; %>
-<% for (let i=0; i<6; i++) { %>
+<% for (let i=0; i<7; i++) { %>
   <% gradeCount[i] = 0; %>
 <% } %>
 
@@ -17,23 +17,14 @@
   <% } %>
 <% }); %>
 
-<a href="#"><h3>Grade 1</h3></a>
-<%= gradeCount[0] %>
+<% for (let i=0; i<7; i++) { %>
+  <a href="grades/<%= i+1 %>"><h3><%= (i<6) ? `Grade ${i+1}`:`Extra`%></h3></a>
+  <%= gradeCount[i] %>
+<% } %>
 
-<a href="#"><h3>Grade 2</h3></a>
-<%= gradeCount[1] %>
-
-<h3>Grade 3</h3>
-<%= gradeCount[2] %>
-
-<h3>Grade 4</h3>
-<%= gradeCount[3] %>
-
-<h3>Grade 5</h3>
-<%= gradeCount[4] %>
-
-<h3>Grade 6</h3>
-<%= gradeCount[5] %>
+<a href="grades/7"><h3>Extra</h3></a>
+<%= gradeNotFound %>
+<%= kanjisWithoutGrade %>
 
 <h3>Total</h3>
 <%= total %>
