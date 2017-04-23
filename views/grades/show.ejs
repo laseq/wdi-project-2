@@ -6,6 +6,7 @@
 
 <h3>Number of kanji characters: <%= kanjis.length %></h3>
 <% kanjis.forEach(kanji => { %>
+  <p><%= kanji._id %></p>
   <%= kanji.character %>
 <% }) %>
 <br>

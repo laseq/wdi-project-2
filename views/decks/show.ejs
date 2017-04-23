@@ -1,0 +1,13 @@
+<h1>Decks Show</h1>
+
+<%= item %>
+<%= kanjiArray %>
+
+<h3><%= item.name %></h3>
+
+<% kanjiArray.forEach(kanji => { %>
+  <p><%= kanji.character %></p>
+  <p><%= kanji.onJp %></p>
+  <p><%= kanji.kunJp %></p>
+  <p><%= kanji.meaning %></p>
+<% }); %>

@@ -4,6 +4,7 @@ const grades        = require('../controllers/grades');
 const lessons       = require('../controllers/lessons');
 const registrations = require('../controllers/registrations');
 const sessions      = require('../controllers/sessions');
+const decks         = require('../controllers/decks');
 
 function secureRoute(req, res, next) {
   if (!req.session.userId) {
@@ -35,5 +36,10 @@ router.route('/login')
   .post(sessions.create);
 router.route('/logout')
   .get(sessions.delete);
+
+router.route('/decks')
+  .get(decks.index);
+router.route('/decks/:id')
+  .get(decks.show);
 
 module.exports = router;

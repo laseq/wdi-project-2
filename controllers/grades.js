@@ -5,6 +5,7 @@ function gradesIndex(req, res) {
     .find()
     .exec()
     .then(kanjis => {
+      console.log('kanjis.length:', kanjis.length);
       res.render('grades/index', { kanjis });
     })
     .catch(err => {

@@ -1,23 +1,17 @@
 console.log('hello world');
 
 $(function() {
+
+  // If we're on the lesson page
   if ($('#lesson-data').length) {
+
+    let currentIndex = 0;
     console.log($('#lesson-data').text());
     const lessonData = JSON.parse(($('#lesson-data').text()));
 
-    $('body').append(`<p id="character">lessonData[0].character: ${lessonData[0].character}</p>`);
-    $('body').append(`<p id="on-jp">lessonData[0].onEn: ${lessonData[0].onJp}</p>`);
-    $('body').append(`<p id="on-en">lessonData[0].onJp: ${lessonData[0].onEn}</p>`);
-    $('body').append(`<p id="kun-jp">lessonData[0].kunEn: ${lessonData[0].kunJp}</p>`);
-    $('body').append(`<p id="kun-en">lessonData[0].kunJp: ${lessonData[0].kunEn}</p>`);
-    $('body').append(`<p id="meaning">lessonData[0].meaning: ${lessonData[0].meaning}</p>`);
-    $('body').append(`<p id="writing-url">lessonData[0].writingUrl: ${lessonData[0].writingUrl}</p>`);
-    $('body').append(`<video width="320" height="240" controls>
-                        <source src=${lessonData[0].writingUrl} type="video/mp4">
-                        Your browser does not support the video tag.
-                      </video>`);
+    // Initate the lesson elements
+    updateLessonElements(lessonData, currentIndex);
 
-    let currentIndex = 0;
     $('#btn-next').on('click', function(){
       if (currentIndex+1 === lessonData.length) {
         console.log('Time to review');
@@ -51,15 +45,3 @@ $(function() {
   }
 
 });
-
-
-
-
-// <script type='text/javascript'>$</script>('#btn-next').on('click', function(){%>
-//   <% if (currentIndex+1 === kanjisInLesson.length) { %>
-//     <% console.log('Time to review'); %>
-//   <% } else { %>
-//     <script type='text/javascript'>$('#character').text(kanjisInLesson[currentIndex].character);</script>
-//     <% currentIndex++; %>
-//   <% } %>
-// <% }); %>
