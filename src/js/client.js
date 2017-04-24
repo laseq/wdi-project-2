@@ -16,6 +16,7 @@ $(function() {
     // Initate the lesson elements
     updateLessonElements(lessonData, currentIndex);
 
+    // Retrieve the next kanji's details and display them. Stop at the last kanji.
     $('#btn-next').on('click', function(){
       if (currentIndex+1 === lessonData.length) {
         console.log('Time to review');
@@ -25,6 +26,7 @@ $(function() {
       }
     });
 
+    // Retrieve the previous kanji's details and display them. Stop at the first kanji.
     $('#btn-previous').on('click', function(){
       if (currentIndex === 0) {
         console.log('Reached the start');
@@ -34,8 +36,9 @@ $(function() {
       }
     });
 
+    // Open up a modal form when 'Add New Deck' is selected from the dropdown/select box
     $('#add-to-deck').on('change', function(){
-      if ($('#add-to-deck').val('Add New Deck')) {
+      if ($('#add-to-deck').find(':selected').attr('id') === 'add-new-deck') {
         $('#modal1').modal('open');
         console.log('Entered #add-new-deck on click');
       } else {
@@ -43,6 +46,7 @@ $(function() {
       }
     });
 
+    // Add the kanji to the selected deck by making an AJAX post to /decks/:id
     $('#add-kanji-to-deck').submit(function(e){
       e.preventDefault();
       $.ajax({
@@ -56,6 +60,7 @@ $(function() {
       });
     });
 
+    // Add a new deck in the lesson and add it in the dropdown/select box
     $('#add-deck-form').submit(function(e){
       e.preventDefault();
       $.ajax({
@@ -66,33 +71,32 @@ $(function() {
           //whatever you wanna do after the form is successfully submitted
           console.log('Ajax post worked for #add-deck-form?');
 
-          // Use the more generic $.ajax to do the same request
-          // $.ajax({
-          //   url: 'https://api.doughnuts.ga/doughnuts/1',
-          //   method: 'GET', // GET by default
-          //   dataType: 'json' // Intelligent Guess by default (xml, json, script, or html)
-          // }).done((data) => console.log(data));
-
           // jQuery AJAX even shorter syntax
-          $.get('https://ga-doughnuts.herokuapp.com/doughnuts')
+          $.get('/proxies/deck')
             .done(data => {
               // when using .get(), passed data will automatically point to .responseJSON
               // e.g. data === data.responseJSON from previous example
-              console.log(data);
+              const jsonDecks = JSON.parse($(data).find('#proxy-data').text());
+
+              // Put this data into the dropdown/select boxes
+              $('#add-to-deck').empty();
+              $('#add-to-deck').append('<option selected="selected" disabled="disabled">Select a deck</option>');
+              $('#add-to-deck').append('<option id="add-new-deck" href="#modal1">Add New Deck</option>');
+              jsonDecks.forEach(deck => {
+                console.log(deck);
+                $('#add-to-deck').append(`<option data-deck-id="${deck._id}" value="${deck.name}">${deck.name}</option>`);
+              });
+              // The Materialize select box needs to be reloaded for the new info to be displayed
+              $('select').material_select();
+
             })
             .fail(err => {
               console.log(err);
             });
-
-
         }
       });
       $('#modal1').modal('close');
     });
-
-    // $('#add-this-kanji').on('click', function(e){
-    //   e.preventDefault;
-    // });
 
   }
 

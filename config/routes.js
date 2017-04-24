@@ -5,6 +5,7 @@ const lessons       = require('../controllers/lessons');
 const registrations = require('../controllers/registrations');
 const sessions      = require('../controllers/sessions');
 const decks         = require('../controllers/decks');
+const proxy         = require('../controllers/proxy');
 
 function secureRoute(req, res, next) {
   if (!req.session.userId) {
@@ -48,5 +49,8 @@ router.route('/decks/:id')
   .delete(decks.delete);
 router.route('/decks/:id/edit')
   .get(decks.edit);
+
+router.route('/proxies/deck')
+  .get(proxy.decksIndex);
 
 module.exports = router;
