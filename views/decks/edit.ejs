@@ -1,0 +1,11 @@
+<h2>Edit Deck</h2>
+
+<form id="deck-edit-form" class="container" action="/decks/<%= deck._id %>" method="post">
+  <input type="hidden" name="_method" value="PUT">
+
+  <label id="deck-name-label" for="deck-name">Deck Name</label>
+  <input id="deck-name" type="text" name="name" value="<%= deck.name %>">
+
+  <input id="btn-deck-edit" class="waves-effect waves-light btn" type="submit" value="Edit">
+
+</form>

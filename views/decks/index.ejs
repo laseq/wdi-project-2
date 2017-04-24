@@ -1,9 +1,6 @@
 <h1>Decks Index</h1>
 
-<%= decks %>
-
-<a href="/decks/<%= decks[0]._id %>"><p>Deck name: <span class='deck-name'><%= decks[0].name %><span></p></a>
-<a href="/decks/<%= decks[1]._id %>"><p>Deck name: <span class='deck-name'><%= decks[1] %><span></p></a>
+<%# Decks controller passes in an array of objects 'decks' here%>
 
   <% decks.forEach(deck => { %>
     <a href="/decks/<%= deck._id %>"><p><%= deck.name %></p></a>

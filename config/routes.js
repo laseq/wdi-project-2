@@ -38,8 +38,15 @@ router.route('/logout')
   .get(sessions.delete);
 
 router.route('/decks')
-  .get(decks.index);
+  .get(decks.index)
+  .post(decks.create);
+router.route('/decks/new')
+  .get(decks.new);
 router.route('/decks/:id')
-  .get(decks.show);
+  .get(decks.show)
+  .put(decks.update)
+  .delete(decks.delete);
+router.route('/decks/:id/edit')
+  .get(decks.edit);
 
 module.exports = router;

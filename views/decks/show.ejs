@@ -1,13 +1,25 @@
 <h1>Decks Show</h1>
-
-<%= item %>
-<%= kanjiArray %>
+<%# item and kanjiArray are passed into this .ejs file from the decks controller %>
 
 <h3><%= item.name %></h3>
 
-<% kanjiArray.forEach(kanji => { %>
-  <p><%= kanji.character %></p>
-  <p><%= kanji.onJp %></p>
-  <p><%= kanji.kunJp %></p>
-  <p><%= kanji.meaning %></p>
-<% }); %>
+<a href="/decks/<%= item.id %>/edit">Edit Deck (Name for now)</a>
+
+<% if (item.name !== 'Favourites' && item.name !== 'Difficult Kanji'){ %>
+  <form method="POST" action="/decks/<%= item.id %>">
+    <input type="hidden" name="_method" value="DELETE">
+    <button class="btn btn-danger">Delete deck</button>
+  </form>
+<% } %>
+
+<% if (kanjiArray.length) { %>
+  <% kanjiArray.forEach(kanji => { %>
+    <p><%= kanji.character %></p>
+    <p><%= kanji.onJp %></p>
+    <p><%= kanji.kunJp %></p>
+    <p><%= kanji.meaning %></p>
+  <% }); %>
+<% } else { %>
+  <p>Add some new cards to this deck</p>
+  <p>You can add them from your study and review sessions</p>
+<% } %>
