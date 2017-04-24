@@ -1,8 +1,12 @@
 <h1>Lessons Show</h1>
 
+<%# The lessons controller passes in a string 'jsonKanjisInLesson' and I'm trying to add in an object 'decks now' %>
+
 <div id="lesson-data" class="hidden-data">
 	<%= jsonKanjisInLesson %>
 </div>
+
+<%= decks %>
 
 <p id="character"></p>
 <p>On</p>
@@ -21,3 +25,54 @@
 
 <button id='btn-previous' type="button" name="button">Previous</button>
 <button id='btn-next' type="button" name="button">Next</button>
+
+
+
+<form id="add-kanji-to-deck" method="POST" action="/decks/<%= decks[0]._id %>">
+  <input type="hidden" name="_method" value="PUT">
+  <div class="form-group hidden-data">
+    <input type="text" name="kanjis" id="kanji-to-add" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="add-to-deck">Add to deck</label>
+    <select name="name" id="add-to-deck" class="form-control select2">
+      <option selected="selected" disabled="disabled">Select a deck</option>
+      <option id="add-new-deck" href="#modal1">Add New Deck</option>
+      <% decks.forEach((deck) => { %>
+        <option data-deck-id="<%= deck._id %>" value="<%= deck.name %>"><%= deck.name %></option>
+      <% }) %>
+    </select>
+  </div>
+
+  <button class="btn btn-primary">Add to deck</button>
+</form>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+  <form id="add-deck-form" class="container" action="/decks" method="POST">
+    <div class="modal-content">
+      <h4>Add a Deck</h4>
+
+      <div class="row">
+        <div class="row modal-form-row">
+          <div class="input-field col s12">
+            <input name="name" id="input-deck-name" type="text" class="validate">
+            <label for="input-deck-name">New deck name</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <div class="button-and-message">
+        <div class="advisory-message">
+          <p></p>
+        </div>
+        <div class="center-align">
+          <input id="form-submit-btn" class="waves-effect waves-light btn" type="submit" name="" value="Submit">
+        </div>
+      </div>
+      <%# <a class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</a>%>
+    </div>
+  </form>
+</div>

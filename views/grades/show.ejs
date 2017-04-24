@@ -5,12 +5,6 @@
 <p>Grade: <%= grade %></p>
 
 <h3>Number of kanji characters: <%= kanjis.length %></h3>
-<% kanjis.forEach(kanji => { %>
-  <p><%= kanji._id %></p>
-  <%= kanji.character %>
-<% }) %>
-<br>
-<br>
 
 <% for (let i=1; i<=kanjis.length; i+=lessonLength) { %>
   <a href="../lessons/<%=grade%>-<%=i%>">Lesson <%= (i+lessonLength-1)/lessonLength %></a>
@@ -20,3 +14,11 @@
   <% } %>
   <p><%= i %>-<%= i+lessonLength-1 %></p>
 <% } %>
+
+<br>
+<br>
+
+<% kanjis.forEach(kanji => { %>
+  <p><%= kanji._id %></p>
+  <%= kanji.character %>
+<% }) %>

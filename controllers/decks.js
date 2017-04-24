@@ -48,9 +48,17 @@ function decksUpdate(req, res, next) {
     .then((deck) => {
       if(!deck) return res.status(404).render('statics/404');
 
+      // for(const field in req.body) {
+      //   deck[field] = req.body[field];
+      // }
       for(const field in req.body) {
-        deck[field] = req.body[field];
+        if (Array.isArray(deck[field])) {
+          deck[field].push(req.body[field]);
+        } else {
+          deck[field] = req.body[field];
+        }
       }
+
 
       return deck.save();
     })
@@ -78,3 +86,17 @@ module.exports = {
   update: decksUpdate,
   delete: decksDelete
 };
+
+// .ejs backup
+
+// <div class="form-group">
+//   <div class="form-group">
+//     <input type="text" name="kanjis" id="kanji-to-add" class="form-control">
+//   </div>
+//   <label for="add-to-deck">Add to deck</label>
+//   <select name="name" id="add-to-deck" class="form-control select2">
+//     <% decks.forEach((deck) => { %>
+//       <option value="<%= deck._id %>"><%= deck.name %></option>
+//     <% }) %>
+//   </select>
+// </div>
