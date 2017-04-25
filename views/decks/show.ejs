@@ -12,14 +12,32 @@
   </form>
 <% } %>
 
+<form id="add-kanji-to-deck-show" method="POST" action="/proxies/onekanjitodeck">
+  <div class="form-group">
+    <div class="form-group hidden-data">
+      <input type="text" name="_id" id="deck-show-id" class="form-control" value="<%= item._id %>">
+    </div>
+    <input type="text" name="character" id="kanji-add-deck-show" class="form-control" maxlength="1">
+  </div>
+  <button class="btn-kanji-add-deck-show">Add to deck</button>
+</form>
+
 <% if (kanjiArray.length) { %>
-  <% kanjiArray.forEach(kanji => { %>
-    <p><%= kanji.character %></p>
-    <p><%= kanji.onJp %></p>
-    <p><%= kanji.kunJp %></p>
-    <p><%= kanji.meaning %></p>
-  <% }); %>
+  <ul>
+    <% kanjiArray.forEach(kanji => { %>
+      <a href="/kanjis/<%= kanji._id %>">
+        <li class="deck-kanji-li" data="<%= kanji._id %>">
+          <p><%= kanji.character %></p>
+          <p><%= kanji.onJp %></p>
+          <p><%= kanji.kunJp %></p>
+          <p><%= kanji.meaning %></p>
+        </li>
+      </a>
+    <% }); %>
+  </ul>
 <% } else { %>
-  <p>Add some new cards to this deck</p>
-  <p>You can add them from your study and review sessions</p>
+  <div class="no-kanji-in-deck">
+    <p>Add some new kanji to this deck</p>
+    <p>You can add them from your study and review sessions</p>
+  </div>
 <% } %>

@@ -57,8 +57,8 @@ $(function() {
           //whatever you wanna do after the form is successfully submitted
           console.log('Ajax post worked for #add-kanji-to-deck?');
         }
-      });
-    });
+      }); // End of Ajax call
+    }); // End of $('#add-kanji-to-deck').submit
 
     // Add a new deck in the lesson and add it in the dropdown/select box
     $('#add-deck-form').submit(function(e){
@@ -88,7 +88,6 @@ $(function() {
               });
               // The Materialize select box needs to be reloaded for the new info to be displayed
               $('select').material_select();
-
             })
             .fail(err => {
               console.log(err);
@@ -113,6 +112,34 @@ $(function() {
     $('#kanji-to-add').attr('value', lessonData[currentIndex]._id);
   }
 
+  // Add kanjis to the deck from the deck show page
+  $('#add-kanji-to-deck-show').submit(function(e){
+    e.preventDefault();
+    $.ajax({
+      url: '/proxies/onekanjitodeck',
+      type: 'post',
+      data: $('#add-kanji-to-deck-show').serialize(),
+      success: function(result){
+        //whatever you wanna do after the form is successfully submitted
+        console.log('Ajax post worked for #btn-kanji-add-deck-show');
+        //console.log(result);
+        const jsonKanji = JSON.parse($(result).find('#proxy-data').text());
+        console.log(jsonKanji);
+
+        // Add the data in the deck
+        if ($('.no-kanji-in-deck').length) {
+          $('.no-kanji-in-deck').remove();
+          $('main').append('<ul>');
+        }
+        $('ul').last().append(`<a href="/kanjis/${jsonKanji._id}">
+        <li class="deck-kanji-li" data="${jsonKanji._id}"></li></a>`);
+        $('.deck-kanji-li').last().append(`<p>${jsonKanji.character}</p>`);
+        $('.deck-kanji-li').last().append(`<p>${jsonKanji.onJp}</p>`);
+        $('.deck-kanji-li').last().append(`<p>${jsonKanji.kunJp}</p>`);
+        $('.deck-kanji-li').last().append(`<p>${jsonKanji.meaning}</p>`);
+      } // End of Ajax success function
+    }); // End of Ajax call
+  }); // End of $('#add-kanji-to-deck').submit
 
 
 });

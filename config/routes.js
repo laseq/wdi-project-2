@@ -53,4 +53,11 @@ router.route('/decks/:id/edit')
 router.route('/proxies/deck')
   .get(proxy.decksIndex);
 
+router.route('/proxies/onekanji')
+  .get(proxy.getKanji);
+
+router.route('/proxies/onekanjitodeck')
+  .get(proxy.getKanji)
+  .post(proxy.addKanji);
+
 module.exports = router;
