@@ -120,7 +120,6 @@ $(function() {
       type: 'post',
       data: $('#add-kanji-to-deck-show').serialize(),
       success: function(result){
-        //whatever you wanna do after the form is successfully submitted
         console.log('Ajax post worked for #btn-kanji-add-deck-show');
         //console.log(result);
         const jsonKanji = JSON.parse($(result).find('#proxy-data').text());
@@ -131,7 +130,7 @@ $(function() {
           $('.no-kanji-in-deck').remove();
           $('main').append('<ul>');
         }
-        $('ul').last().append(`<a href="/kanjis/${jsonKanji._id}">
+        $('ul').last().append(`<a href="/kanjis/${jsonKanji._id}/${$('#deck-show-id').val()}">
         <li class="deck-kanji-li" data="${jsonKanji._id}"></li></a>`);
         $('.deck-kanji-li').last().append(`<p>${jsonKanji.character}</p>`);
         $('.deck-kanji-li').last().append(`<p>${jsonKanji.onJp}</p>`);
@@ -142,4 +141,4 @@ $(function() {
   }); // End of $('#add-kanji-to-deck').submit
 
 
-});
+}); // End of document.ready function

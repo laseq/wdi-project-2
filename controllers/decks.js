@@ -86,17 +86,3 @@ module.exports = {
   update: decksUpdate,
   delete: decksDelete
 };
-
-// .ejs backup
-
-// <div class="form-group">
-//   <div class="form-group">
-//     <input type="text" name="kanjis" id="kanji-to-add" class="form-control">
-//   </div>
-//   <label for="add-to-deck">Add to deck</label>
-//   <select name="name" id="add-to-deck" class="form-control select2">
-//     <% decks.forEach((deck) => { %>
-//       <option value="<%= deck._id %>"><%= deck.name %></option>
-//     <% }) %>
-//   </select>
-// </div>

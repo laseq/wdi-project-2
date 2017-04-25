@@ -6,6 +6,7 @@ const registrations = require('../controllers/registrations');
 const sessions      = require('../controllers/sessions');
 const decks         = require('../controllers/decks');
 const proxy         = require('../controllers/proxy');
+const kanjis        = require('../controllers/kanjis');
 
 function secureRoute(req, res, next) {
   if (!req.session.userId) {
@@ -49,6 +50,10 @@ router.route('/decks/:id')
   .delete(decks.delete);
 router.route('/decks/:id/edit')
   .get(decks.edit);
+
+router.route('/kanjis/:kanjiid/:deckid')
+  .get(kanjis.show)
+  .delete(kanjis.delete);
 
 router.route('/proxies/deck')
   .get(proxy.decksIndex);
