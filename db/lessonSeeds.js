@@ -31,7 +31,7 @@ Kanji
       tempLessonArray[i] = {
         grade: 1,
         lessonNumber: i,
-        kanjis: lessonKanjis[i]['character']
+        kanjis: lessonKanjis[i]
       };
     }
 

@@ -1,6 +1,14 @@
 const Kanji = require('../models/kanji');
 const Deck  = require('../models/deck');
 
+function kanjisIndex(req, res, next) {
+  Kanji
+    .find()
+    .exec()
+    .then((kanjis) => res.render('kanjis/index', { kanjis }))
+    .catch(next);
+}
+
 function kanjisShow(req, res, next) {
   const deckId  = req.params.deckid;
   Kanji
@@ -26,6 +34,7 @@ function kanjisDelete(req, res, next) {
 }
 
 module.exports  = {
+  index: kanjisIndex,
   show: kanjisShow,
   delete: kanjisDelete
 };

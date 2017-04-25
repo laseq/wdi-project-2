@@ -8,16 +8,16 @@ const decks         = require('../controllers/decks');
 const proxy         = require('../controllers/proxy');
 const kanjis        = require('../controllers/kanjis');
 
-function secureRoute(req, res, next) {
-  if (!req.session.userId) {
-    return req.session.regenerate(() => {
-      req.flash('danger', 'You must be logged in.');
-      res.redirect('/login');
-    });
-  }
-
-  return next();
-}
+// function secureRoute(req, res, next) {
+//   if (!req.session.userId) {
+//     return req.session.regenerate(() => {
+//       req.flash('danger', 'You must be logged in.');
+//       res.redirect('/login');
+//     });
+//   }
+//
+//   return next();
+// }
 
 router.get('/', (req, res) => res.render('statics/home'));
 
@@ -51,6 +51,8 @@ router.route('/decks/:id')
 router.route('/decks/:id/edit')
   .get(decks.edit);
 
+router.route('/kanjis')
+  .get(kanjis.index);
 router.route('/kanjis/:kanjiid/:deckid')
   .get(kanjis.show)
   .delete(kanjis.delete);

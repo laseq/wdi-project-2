@@ -1,0 +1,55 @@
+<h1>Kanjis Index</h1>
+
+<% let total = 0; %>
+<% let gradeNotFound = 0; %>
+<% let kanjisWithoutGrade = []; %>
+<% let gradeCount = []; %>
+<% for (let i=0; i<6; i++) { %>
+  <% gradeCount[i] = 0; %>
+<% } %>
+
+<% kanjis.forEach(kanji => { %>
+  <% gradeCount[kanji.grade - 1]++; %>
+  <% total++ %>
+  <% if (kanji.grade === 'No data') { %>
+    <% kanjisWithoutGrade.push(kanji.character); %>
+    <% gradeNotFound++ %>
+  <% } %>
+<% }); %>
+
+<a href="#"><h3>Grade 1</h3></a>
+<%= gradeCount[0] %>
+
+<a href="#"><h3>Grade 2</h3></a>
+<%= gradeCount[1] %>
+
+<h3>Grade 3</h3>
+<%= gradeCount[2] %>
+
+<h3>Grade 4</h3>
+<%= gradeCount[3] %>
+
+<h3>Grade 5</h3>
+<%= gradeCount[4] %>
+
+<h3>Grade 6</h3>
+<%= gradeCount[5] %>
+
+<h3>Total</h3>
+<%= total %>
+
+<h3>Grades not found</h3>
+<%= gradeNotFound %>
+<%= kanjisWithoutGrade %>
+
+
+<% for (let i=0; i<10; i++) { %>
+  <p><%= kanjis[i].character %></p>
+  <p><%= kanjis[i]['onJp'] %></p>
+  <p><%= kanjis[i]['onEn'] %></p>
+  <p><%= kanjis[i]['kunJp'] %></p>
+  <p><%= kanjis[i]['kunEn'] %></p>
+  <p><%= kanjis[i].meaning %></p>
+  <p><%= kanjis[i].grade %></p>
+  <p><%= kanjis[i]['writingUrl'] %></p>
+<% } %>

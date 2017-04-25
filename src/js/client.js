@@ -1,6 +1,17 @@
 console.log('hello world');
 
 $(function() {
+  if ($('.carousel').length > 0) {
+    $('.carousel.carousel-slider').carousel({fullWidth: true});
+    $('.prev').on('click', () => {
+      $('.carousel.carousel-slider').carousel('prev');
+    });
+
+    $('.next').on('click', () => {
+      $('.carousel.carousel-slider').carousel('next');
+    });
+  }
+
   // To enable the 'select' dropdown boxes in Materialize
   $('select').material_select();
   //$('.modal-trigger').leanModal();
