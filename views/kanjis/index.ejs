@@ -1,13 +1,66 @@
+<h1 class="center">Browse Characters</h1>
 
-<div class="carousel carousel-slider center">
-  <% kanjis.forEach(kanji => { %>
-    <div class="carousel-item white black-text">
-      <h1><%= kanji.character %></h1>
-      <p class="black-text"><%= kanji.meaning %></p>
+<ul>
+  <li><a class="grade-sort" href="/kanjis">All</a></li>
+  <% for (let i=1; i< 8; i++) { %>
+    <li><a class="grade-sort" href="/kanjis?grade=<%= i %>"><%= i %></a></li>
+  <% } %>
+</ul>
+
+<div class="section">
+  <div class="carousel carousel-slider center">
+    <% kanjis.forEach(kanji => { %>
+      <div class="carousel-item white black-text">
+        <div class="row">
+
+          <div class="col s6">
+            <h1 data-id="<%= kanji._id %>"><%= kanji.character %></h1>
+          </div>
+
+          <div class="col s6 carousel-text-column">
+
+            <div class="row carousel-row">
+              <div class="text-group">
+                <h5 class="black-text jp-text"><%= kanji.onJp %></h5>
+                <h5 class="black-text en-text"><%= kanji.onEn %></h5>
+              </div>
+            </div>
+            <div class="row carousel-row">
+              <h5 class="black-text jp-text"><%= kanji.kunJp %></h5>
+              <h5 class="black-text en-text"><%= kanji.kunEn %></h5>
+            </div>
+            <div class="row carousel-row">
+              <h5 class="black-text meaning-text"><%= kanji.meaning %></h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% }); %>
+  </div>
+
+  <div class="row left-right-buttons">
+    <div class="col s3 offset-s2 prev waves-effect waves-light red darken-4 btn"><span class="">Previous</span></div>
+    <div class="col s3 offset-s2 next waves-effect waves-light red darken-4 btn"><span class="">Next</span></div>
+    <div class="col s1 right">
+    <a class="btn-floating btn-small waves-effect waves-light red darken-4" href="#addToDeck"><i class="material-icons">add</i></a>
     </div>
-  <% }); %>
+  </div>
 </div>
-<div class="row">
-  <div class="col s6 prev center-align black"><span class="flow-text white-text">Previous</span></div>
-  <div class="col s6 next center-align black"><span class="flow-text white-text">Next</span></div>
+
+<!-- Modal Structure -->
+<div id="addToDeck" class="modal">
+  <form>
+  <div class="modal-content">
+    <h4>Choose deck</h4>
+      <% decks.forEach(deck => { %>
+        <p>
+          <input type="radio" id="deck-<%= deck._id %>" name="deck" value="<%= deck._id %>">
+          <label for="deck-<%= deck._id %>"><%= deck.name %></label>
+        </p>
+      <% }); %>
+    </div>
+    <div class="modal-footer">
+      <input type="submit" class="modal-action waves-effect waves-green btn-flat" value="Add">
+    </div>
+  </form>
 </div>

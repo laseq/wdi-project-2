@@ -16,11 +16,11 @@ Deck
   .create([
     {
       name: 'Favourites',
-      kanjis: ['58fced85251e985a0b02f582','58fced85251e985a0b02f577']
+      // kanjis: ['58fced85251e985a0b02f582','58fced85251e985a0b02f577']
     },
     {
       name: 'Difficult Kanji',
-      kanjis: ['58fced85251e985a0b02f444','58fced85251e985a0b02f431']
+      // kanjis: ['58fced85251e985a0b02f444','58fced85251e985a0b02f431']
     }
   ])
   .then(decks => {

@@ -1,40 +1,21 @@
 <h1>Decks Show</h1>
-<%# item and kanjiArray are passed into this .ejs file from the decks controller %>
+<h3><%= deck.name %></h3>
 
-<h3><%= item.name %></h3>
+<%= deck %>
 
-<a href="/decks/<%= item.id %>/edit">Edit Deck (Name for now)</a>
-
-<% if (item.name !== 'Favourites' && item.name !== 'Difficult Kanji'){ %>
-  <form method="POST" action="/decks/<%= item.id %>">
-    <input type="hidden" name="_method" value="DELETE">
-    <button class="btn btn-danger">Delete deck</button>
-  </form>
-<% } %>
-
-<form id="add-kanji-to-deck-show" method="POST" action="/proxies/onekanjitodeck">
-  <div class="form-group">
-    <div class="form-group hidden-data">
-      <input type="text" name="_id" id="deck-show-id" class="form-control" value="<%= item._id %>">
-    </div>
-    <input type="text" name="character" id="kanji-add-deck-show" class="form-control" maxlength="1">
-  </div>
-  <button class="btn-kanji-add-deck-show">Add to deck</button>
-</form>
-
-<% if (kanjiArray.length) { %>
-  <ul>
-    <% kanjiArray.forEach(kanji => { %>
-      <a href="/kanjis/<%= kanji._id %>/<%= item.id %>">
-        <li class="deck-kanji-li" data="<%= kanji._id %>">
-          <p><%= kanji.character %></p>
-          <p><%= kanji.onJp %></p>
-          <p><%= kanji.kunJp %></p>
-          <p><%= kanji.meaning %></p>
-        </li>
-      </a>
+<% if (deck.kanjis.length !== 0) { %>
+  <div class="carousel carousel-slider center">
+    <% deck.kanjis.forEach(kanji => { %>
+      <div class="carousel-item white black-text">
+        <h1 data-id="<%= kanji._id %>"><%= kanji.character %></h1>
+        <p class="black-text"><%= kanji.meaning %></p>
+      </div>
     <% }); %>
-  </ul>
+  </div>
+  <div class="row">
+    <div class="col s6 prev center-align black"><span class="flow-text white-text">Previous</span></div>
+    <div class="col s6 next center-align black"><span class="flow-text white-text">Next</span></div>
+  </div>
 <% } else { %>
   <div class="no-kanji-in-deck">
     <p>Add some new kanji to this deck</p>

@@ -50,6 +50,8 @@ router.route('/decks/:id')
   .delete(decks.delete);
 router.route('/decks/:id/edit')
   .get(decks.edit);
+router.route('/decks/:id/add')
+  .post(decks.addKanji);
 
 router.route('/kanjis')
   .get(kanjis.index);

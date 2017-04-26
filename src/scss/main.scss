@@ -1,13 +1,79 @@
+@import "variables";
+@import "mixins";
+
 .hidden-data {
 	display: none;
 }
 
 body {
-  font-family: sans-serif;
-  background: #f4e6cb;
+  color: $theme-color-1;
+  background-color: $theme-color-2;
+
+  color: $theme-color-1;
+  // background-image: url("../images/bg-2.png");
+  //position: relative;
+
+  h1,h2,h3,h4 {
+    font-family: $heading-font;
+  }
+
+  nav {
+    background-color: $theme-color-3;
+    color: $theme-color-2;
+    font-family: $heading-font;
+
+    .side-nav {
+      background-color: $theme-color-3;
+      color: $theme-color-2;
+    }
+
+  }
+
+}
+
+.grade-sort {
+  color: $theme-color-2;
+  display: inline-block;
+  width: 12%;
+  background-color: $theme-color-3;
+  line-height: 50px;
+  text-align: center;
+}
+
+.carousel {
+  border: 2px solid black;
 }
 
 .carousel-item h1 {
   line-height: 300px;
   font-size: 150px;
+  // background-color: blue;
+}
+.carousel-text-column {
+  display: flex;
+  flex-direction: column;
+  // background-color: green;
+  margin-top: 20px;
+
+  .carousel-row {
+    //height: 100px;
+    flex-grow: 1;
+    flex-basis: 7rem;
+    // background-color: yellow;
+
+    .jp-text{
+      margin-top: 20px;
+      font-size: 20px;
+    }
+    .en-text{
+      font-size: 20px;
+    }
+    .meaning-text {
+      line-height: 70px;
+    }
+  }
+}
+
+.left-right-buttons {
+  margin-top: 20px;
 }

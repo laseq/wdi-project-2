@@ -2,11 +2,18 @@ const Kanji = require('../models/kanji');
 const Deck  = require('../models/deck');
 
 function kanjisIndex(req, res, next) {
-  Kanji
-    .find()
-    .exec()
-    .then((kanjis) => res.render('kanjis/index', { kanjis }))
-    .catch(next);
+  //const p1 = Kanji.find(req.query).exec();
+  const p1 = Kanji.find(req.query ).exec();
+  // Find decks where you are the owner... NOT IMPLEMENTED YET
+  const p2 = Deck.find().exec();
+
+  // Native Node method, NOT bluebird
+  Promise.all([p1, p2])
+  .then((values) => res.render('kanjis/index', {
+    kanjis: values[0],
+    decks: values[1]
+  }))
+  .catch(next);
 }
 
 function kanjisShow(req, res, next) {

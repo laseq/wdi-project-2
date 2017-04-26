@@ -21,11 +21,12 @@ function decksCreate(req, res, next) {
 function decksShow(req, res, next) {
   Deck
     .findById(req.params.id)
-    .populate('kanjis')
-    .then((item) => {
-      if(!item) return res.status(404).render('statics/404');
-      res.render('decks/show', { item, kanjiArray: item.kanjis });
+    .exec()
+    .then((deck) => {
+      if (!deck) return res.status(404).render('statics/404');
+      return Deck.populate(deck, { path: 'kanjis'});
     })
+    .then(deck => res.render('decks/show', { deck }))
     .catch(next);
 }
 
@@ -77,6 +78,29 @@ function decksDelete(req, res, next) {
     .catch(next);
 }
 
+function decksAddKanji(req, res, next) {
+  Deck
+    .findByIdAndUpdate(req.params.id, {
+      $addToSet: {
+        kanjis: [req.body.kanjiId]
+      }
+    }, {
+      new: true
+    })
+    .exec()
+    .then(deck => {
+      if (!deck) return res.status(404).json({ message: 'No deck found' });
+      return Deck.populate(deck, { path: 'kanjis'});
+    })
+    .then(deck => {
+      return res.status(200).json(deck);
+    })
+    .catch((err) => {
+      console.log(err);
+      next(err);
+    });
+}
+
 module.exports = {
   index: decksIndex,
   new: decksNew,
@@ -84,5 +108,6 @@ module.exports = {
   show: decksShow,
   edit: decksEdit,
   update: decksUpdate,
-  delete: decksDelete
+  delete: decksDelete,
+  addKanji: decksAddKanji
 };
