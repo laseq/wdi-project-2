@@ -8,7 +8,6 @@ const kanjiSchema = new mongoose.Schema({
   kunEn: [{ type: String }],
   meaning: [{ type: String }],
   grade: {type: String},
-  // soundurl: [{type: String}],
   writingUrl: {type: String}
 });
 

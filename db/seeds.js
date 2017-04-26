@@ -6,11 +6,13 @@ const env         = require('../config/env');
 const databaseURL = env.db;
 const Kanji       = require('../models/kanji');
 const Deck        = require('../models/deck');
+const Lesson      = require('../models/lesson');
 
 mongoose.connect(databaseURL);
 
 Kanji.collection.drop();
 Deck.collection.drop();
+Lesson.collection.drop();
 
 var options = {
   // uri: 'https://kanjialive-api.p.mashape.com/api/public/search/advanced/?grade=1',
@@ -25,9 +27,7 @@ var options = {
 
 rp(options)
 .then(function (repos) {
-
-  bluebird.map(repos, item =>{
-
+  return bluebird.map(repos, item =>{
     return Kanji.create({
       character: item.kanji.character || 'No data',
       onJp: item.kanji.onyomi.katakana || 'No data',
@@ -40,25 +40,15 @@ rp(options)
     });
 
   })
-  .then(characters => {
-    console.log('Kanji collection has %d characters', characters.length);
-    //process.exit();
+  .then(kanjis => {
+    console.log('Kanji collection has %d kanjis', kanjis.length);
 
-  //   return Deck
-  //     .create([
-  //       {
-  //         name: 'Favourites',
-  //         kanjis: ''
-  //       },
-  //       {
-  //         name: 'Difficult Kanji',
-  //         kanjis: ''
-  //       }
-  //     ]);
-  //
-  // })
-  // .then(decks => {
-  //   console.log('Decks collection has %d decks', decks.length);
+    return bluebird.mapSeries(kanjis, kanji => {
+      return Lesson.findOneByGradeAndNumberOfKanjiAndCreateOrUpdate(10, kanji);
+    });
+  })
+  .then(lessons => {
+    console.log(lessons)
   })
   .catch(function(err) {
     // Collection creation failed

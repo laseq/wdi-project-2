@@ -3,8 +3,8 @@
 const mongoose  = require('mongoose');
 
 const gradeSchema = new mongoose.Schema({
-  character: { type: String, required: true },
-  grade: {type: String}
+  character: { type: String, trim: true, required: true },
+  grade: {type: String, trim: true}
 });
 
 module.exports = mongoose.model('Grade', gradeSchema);

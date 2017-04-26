@@ -1,78 +1,34 @@
-<h1>Lessons Show</h1>
+<% if (lesson.kanjis.length !== 0) { %>
+  <div class="carousel carousel-slider center">
+    <% lesson.kanjis.forEach(kanji => { %>
+      <div class="carousel-item white black-text">
+        <div class="kanji-main">
+          <h1 data-id="<%= kanji._id %>"><%= kanji.character %></h1>
+        </div>
 
-<%# The lessons controller passes in a string 'jsonKanjisInLesson' and I'm trying to add in an object 'decks now' %>
+        <div class="text-group onyomi">
+          <h5 class="black-text jp-text"><%= kanji.onJp %></h5>
+          <h5 class="black-text en-text"><%= kanji.onEn %></h5>
+        </div>
 
-<div id="lesson-data" class="hidden-data">
-	<%= jsonKanjisInLesson %>
-</div>
+        <div class="text-group kunyomi">
+          <h5 class="black-text jp-text"><%= kanji.kunJp %></h5>
+          <h5 class="black-text en-text"><%= kanji.kunEn %></h5>
+        </div>
 
-<%= decks %>
-
-<p id="character"></p>
-<p>On</p>
-<p id="on-jp"></p>
-<p id="on-en"></p>
-<p>Kun</p>
-<p id="kun-jp"></p>
-<p id="kun-en"></p>
-<p>Meaning</p>
-<p id="meaning"></p>
-<p>How to write</p>
-<video width="320" height="240" controls>
-  <source id="writing-url" src="" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-
-<button id='btn-previous' type="button" name="button">Previous</button>
-<button id='btn-next' type="button" name="button">Next</button>
-
-
-
-<form id="add-kanji-to-deck" method="POST" action="/decks/<%= decks[0]._id %>">
-  <input type="hidden" name="_method" value="PUT">
-  <div class="form-group hidden-data">
-    <input type="text" name="kanjis" id="kanji-to-add" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="add-to-deck">Add to deck</label>
-    <select name="name" id="add-to-deck" class="form-control select2">
-      <option selected="selected" disabled="disabled">Select a deck</option>
-      <option id="add-new-deck" href="#modal1">Add New Deck</option>
-      <% decks.forEach((deck) => { %>
-        <option data-deck-id="<%= deck._id %>" value="<%= deck.name %>"><%= deck.name %></option>
-      <% }) %>
-    </select>
-  </div>
-
-  <button class="btn btn-primary">Add to deck</button>
-</form>
-
-<!-- Modal Structure -->
-<div id="modal1" class="modal">
-  <form id="add-deck-form" class="container" action="/decks" method="POST">
-    <div class="modal-content">
-      <h4>Add a Deck</h4>
-
-      <div class="row">
-        <div class="row modal-form-row">
-          <div class="input-field col s12">
-            <input name="name" id="input-deck-name" type="text" class="validate">
-            <label for="input-deck-name">New deck name</label>
-          </div>
+        <div class="text-group meaning">
+          <h5 class="black-text meaning-text"><%= kanji.meaning %></h5>
         </div>
       </div>
-    </div>
-
-    <div class="modal-footer">
-      <div class="button-and-message">
-        <div class="advisory-message">
-          <p></p>
-        </div>
-        <div class="center-align">
-          <input id="form-submit-btn" class="waves-effect waves-light btn" type="submit" name="" value="Submit">
-        </div>
-      </div>
-      <%# <a class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</a>%>
-    </div>
-  </form>
-</div>
+    <% }); %>
+  </div>
+  <div class="row left-right-buttons">
+    <div class="col s3 offset-s2 prev btn"><span class="">Previous</span></div>
+    <div class="col s3 offset-s2 next btn"><span class="">Next</span></div>
+  </div>
+<% } else { %>
+  <div class="no-kanji-in-deck">
+    <p>Add some new kanji to this deck</p>
+    <p>You can add them from your study and review sessions</p>
+  </div>
+<% } %>

@@ -5,7 +5,7 @@ const lessons       = require('../controllers/lessons');
 const registrations = require('../controllers/registrations');
 const sessions      = require('../controllers/sessions');
 const decks         = require('../controllers/decks');
-const proxy         = require('../controllers/proxy');
+// const proxy         = require('../controllers/proxy');
 const kanjis        = require('../controllers/kanjis');
 
 function secureRoute(req, res, next) {
@@ -20,11 +20,13 @@ function secureRoute(req, res, next) {
 
 router.get('/', (req, res) => res.render('statics/home'));
 
-router.route('/grades')
-  .get(grades.index);
-router.route('/grades/:id')
-  .get(grades.show);
+// router.route('/grades')
+//   .get(grades.index);
+// router.route('/grades/:id')
+//   .get(grades.show);
 
+router.route('/lessons')
+  .get(lessons.index);
 router.route('/lessons/:id')
   .get(lessons.show);
 
@@ -58,14 +60,14 @@ router.route('/kanjis/:kanjiid/:deckid')
   .get(secureRoute, kanjis.show)
   .delete(secureRoute, kanjis.delete);
 
-router.route('/proxies/deck')
-  .get(proxy.decksIndex);
-
-router.route('/proxies/onekanji')
-  .get(proxy.getKanji);
-
-router.route('/proxies/onekanjitodeck')
-  .get(proxy.getKanji)
-  .post(proxy.addKanji);
+// router.route('/proxies/deck')
+//   .get(proxy.decksIndex);
+//
+// router.route('/proxies/onekanji')
+//   .get(proxy.getKanji);
+//
+// router.route('/proxies/onekanjitodeck')
+//   .get(proxy.getKanji)
+//   .post(proxy.addKanji);
 
 module.exports = router;
