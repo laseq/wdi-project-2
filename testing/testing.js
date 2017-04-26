@@ -78,3 +78,33 @@ Deck
 //     // API call failed...
 //     console.log('Error in .then(json)', err);
 //   });
+
+
+
+// Backup for dec show carousel
+
+// <div class="carousel-item white black-text">
+//   <div class="row">
+//
+//     <div class="col s6">
+//       <h1 data-id="<%= kanji._id %>"><%= kanji.character %></h1>
+//     </div>
+//
+//     <div class="col s6 carousel-text-column">
+//
+//       <div class="row carousel-row">
+//         <div class="text-group">
+//           <h5 class="black-text jp-text"><%= kanji.onJp %></h5>
+//           <h5 class="black-text en-text"><%= kanji.onEn %></h5>
+//         </div>
+//       </div>
+//       <div class="row carousel-row">
+//         <h5 class="black-text jp-text"><%= kanji.kunJp %></h5>
+//         <h5 class="black-text en-text"><%= kanji.kunEn %></h5>
+//       </div>
+//       <div class="row carousel-row">
+//         <h5 class="black-text meaning-text"><%= kanji.meaning %></h5>
+//       </div>
+//     </div>
+//   </div>
+// </div>

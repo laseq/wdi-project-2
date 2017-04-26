@@ -1,10 +1,14 @@
-const mongoose  = require('mongoose');
-const bcrypt    = require('bcrypt');
+const mongoose    = require('mongoose');
+const bcrypt      = require('bcrypt');
+const deckSchema  = require('../models/deck');
+const deck = mongoose.model('Deck');
+
 
 const userSchema = new mongoose.Schema({
   username: { type: String },
   email: { type: String, required: true },
-  password: { type: String, required: true }
+  password: { type: String, required: true },
+  decks: [{ type: mongoose.Schema.ObjectId, ref: 'Deck' }]
 });
 
 userSchema.pre('save', function hashPassword(next) {

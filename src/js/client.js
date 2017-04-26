@@ -29,23 +29,6 @@ $(function() {
       .fail(console.error);
     });
 
-    // $('.grade-sort').on('click', (e) => {
-    //   console.log('clicked');
-    //   const grade = $(e.target).text();
-    //   const data   = {
-    //     gradeId: grade
-    //     //kanjiId: $('.active h1').data('id')
-    //   };
-    //   console.log('grade', grade);
-    //
-    //   $.get(`/kanjis`, grade)
-    //   .done(data => {
-    //     //console.log('SUCCESS', data);
-    //     $('#addToDeck').modal('close');
-    //   })
-    //   .fail(console.error);
-    // });
-
   }
 
   // To enable the 'select' dropdown boxes in Materialize

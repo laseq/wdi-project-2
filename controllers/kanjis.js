@@ -5,7 +5,7 @@ function kanjisIndex(req, res, next) {
   //const p1 = Kanji.find(req.query).exec();
   const p1 = Kanji.find(req.query ).exec();
   // Find decks where you are the owner... NOT IMPLEMENTED YET
-  const p2 = Deck.find().exec();
+  const p2 = Deck.find({ user: res.locals.user._id}).exec();
 
   // Native Node method, NOT bluebird
   Promise.all([p1, p2])

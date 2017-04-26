@@ -1,9 +1,18 @@
 <h1>Decks Index</h1>
-
-<%# Decks controller passes in an array of objects 'decks' here%>
-
-  <% decks.forEach(deck => { %>
-    <a href="/decks/<%= deck._id %>"><p><%= deck.name %></p></a>
+<%# Decks controller passes in 'user' here with 'decks' populated%>
+<ul>
+  <% user.decks.forEach(deck => { %>
+    <a href="/decks/<%= deck._id %>">
+      <li class="deck-image">
+          <img src="images/deck-img.png" class="deck-photo">
+          <p class="deck-name"><%= deck.name %></p>
+        </li>
+    </a>
   <% }); %>
-
-  <a href="/decks/new %>"><p>Add new deck</p></a>
+    <a href="/decks/new %>">
+      <li class="deck-image">
+        <img src="images/deck-img.png" class="deck-photo">
+        <p class="deck-name">Add new deck</p>
+      </li>
+    </a>
+<ul>

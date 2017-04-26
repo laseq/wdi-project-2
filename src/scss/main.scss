@@ -13,7 +13,7 @@ body {
   // background-image: url("../images/bg-2.png");
   //position: relative;
 
-  h1,h2,h3,h4 {
+  h1,h2,h3,h4,h5,h6,p {
     font-family: $heading-font;
   }
 
@@ -32,21 +32,49 @@ body {
 }
 
 .grade-sort {
-  color: $theme-color-2;
   display: inline-block;
+  color: $theme-color-2;
   width: 12%;
   background-color: $theme-color-3;
   line-height: 50px;
   text-align: center;
+  &:hover {
+    background-color: $theme-color-3;
+    opacity: 0.8;
+  }
 }
 
 .carousel {
   border: 2px solid black;
+  .carousel-item {
+    position: relative;
+      .kanji-main {
+        width: 50%;
+        position: absolute;
+        left: 0;
+        top: 12%;
+      }
+      .text-group {
+        position: absolute;
+        right: 0;
+        width: 50%;
+      }
+      .onyomi {
+        top: 5%;
+      }
+      .kunyomi {
+        top: 35%;
+      }
+      .meaning {
+        top: 70%;
+      }
+
+  }
 }
 
 .carousel-item h1 {
-  line-height: 300px;
-  font-size: 150px;
+  //line-height: 300px;
+  font-size: 200px;
   // background-color: blue;
 }
 .carousel-text-column {
@@ -76,4 +104,66 @@ body {
 
 .left-right-buttons {
   margin-top: 20px;
+}
+.prev, .next, .add-deck-btn, .remove-deck-btn, .edit-deck-btn {
+  background-color: $theme-color-3;
+  &:hover {
+    background-color: $theme-color-3;
+    opacity: 0.8;
+  }
+}
+.prev, .next, .remove-deck-btn, .edit-deck-btn {
+  border-radius: 0px;
+}
+
+.remove-deck-btn, .edit-deck-btn {
+  width: 200px;
+  margin-bottom: 20px;
+}
+
+.show-deck-top-row {
+  .deck-show-top-buttons {
+    display: inline-block;
+  }
+  h3 {
+    margin-right: 100px;
+  }
+  h3, form, .edit-deck-btn {
+    display: inline-block;
+  }
+}
+
+.deck-image {
+  border: 1px solid black;
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  margin: 10px 10px;
+  text-align: center;
+  background-color: $theme-color-2;
+
+  .deck-photo {
+    //background-image: url('/images/deck-img.png');
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .deck-name {
+    font-size: 24px;
+    font-weight: 500;
+    // margin-top: 0;
+    line-height: 0px;
+    text-overflow: ellipsis;
+
+  }
+}
+
+.deck-row {
+  .col {
+    border: 1px solid black;
+  }
+}
+
+.container {
+  width: 80%;
 }
