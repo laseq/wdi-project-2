@@ -10,12 +10,14 @@ const app             = express();
 const session         = require('express-session');
 const User            = require('./models/user');
 const flash           = require('express-flash');
+const cors            = require('cors');
 
 mongoose.connect(env.db);
 
 app.set('view engine', 'ejs');
 app.set('views', `${__dirname}/views`);
 
+app.use(cors());
 app.use(expressLayouts);
 app.use(express.static(`${__dirname}/public`));
 app.use(bodyParser.urlencoded({ extended: true }));

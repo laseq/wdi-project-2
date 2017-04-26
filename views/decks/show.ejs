@@ -1,16 +1,15 @@
 <h1>Decks</h1>
 <div class="show-deck-top-row">
-  <h3><%= deck.name %></h3>
+  <h3 id="h3-deck-name" data="<%= deck._id %>"><%= deck.name %></h3>
   <div class="deck-show-top-buttons">
     <a class="btn edit-deck-btn" href="/decks/<%= deck.id %>/edit">Edit Deck</a>
     <form method="POST" action="/decks/<%= deck.id %>">
       <input type="hidden" name="_method" value="DELETE">
       <button class="btn remove-deck-btn">Delete Deck</button>
     </form>
+      <button class="btn remove-kanji-btn" id="remove-kanji">Remove kanji</button>
   </div>
 </div>
-
-
 
 <% if (deck.kanjis.length !== 0) { %>
   <div class="carousel carousel-slider center">

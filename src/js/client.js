@@ -29,6 +29,30 @@ $(function() {
       .fail(console.error);
     });
 
+
+    $('#remove-kanji').on('click', (e) => {
+      e.preventDefault();
+
+      const data   = {
+        deckId: $('#h3-deck-name').attr('data'),
+        kanjiId: $('.active h1').data('id')
+      };
+
+      $.ajax({
+        url: `/kanjis/${data.kanjiId}/${data.deckId}`,
+        type: 'delete'
+      }).done(() => {
+        console.log('done');
+      });
+
+      // $.post(`/kanjis/${data.kanjiId}/${data.deckId}`, data)
+      // .done(data => {
+      //   console.log('SUCCESS', data);
+      // })
+      // .fail(console.error);
+
+    });
+
   }
 
   // To enable the 'select' dropdown boxes in Materialize

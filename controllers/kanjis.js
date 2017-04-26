@@ -4,7 +4,7 @@ const Deck  = require('../models/deck');
 function kanjisIndex(req, res, next) {
   //const p1 = Kanji.find(req.query).exec();
   const p1 = Kanji.find(req.query ).exec();
-  // Find decks where you are the owner... NOT IMPLEMENTED YET
+  // Find decks where you are the owner
   const p2 = Deck.find({ user: res.locals.user._id}).exec();
 
   // Native Node method, NOT bluebird
@@ -30,12 +30,14 @@ function kanjisShow(req, res, next) {
 }
 
 function kanjisDelete(req, res, next) {
+  console.log('deck', req.params.deckid);
+  console.log('kanji', req.params.kanjiid);
   Deck
-  .update({ _id: req.params.deckid },
-    { $pull: { 'kanjis': req.params.kanjiid } }
-  )
-  .then(() => {
-    res.redirect(`/decks/${req.params.deckid}`);
+  .findByIdAndUpdate({ _id: req.params.deckid }, { $pull: { kanjis: [req.params.kanjiid] } }, { new: true })
+  .exec()
+  .then(deck => {
+    console.log(deck);
+    res.sendStatus(200);
   })
   .catch(next);
 }

@@ -8,16 +8,15 @@ const decks         = require('../controllers/decks');
 const proxy         = require('../controllers/proxy');
 const kanjis        = require('../controllers/kanjis');
 
-// function secureRoute(req, res, next) {
-//   if (!req.session.userId) {
-//     return req.session.regenerate(() => {
-//       req.flash('danger', 'You must be logged in.');
-//       res.redirect('/login');
-//     });
-//   }
-//
-//   return next();
-// }
+function secureRoute(req, res, next) {
+  if (!req.session.userId) {
+    return req.session.regenerate(() => {
+      req.flash('danger', 'You must be logged in to see that page.');
+      res.redirect('/login');
+    });
+  }
+  return next();
+}
 
 router.get('/', (req, res) => res.render('statics/home'));
 
@@ -40,24 +39,24 @@ router.route('/logout')
   .get(sessions.delete);
 
 router.route('/decks')
-  .get(decks.index)
-  .post(decks.create);
+  .get(secureRoute, decks.index)
+  .post(secureRoute, decks.create);
 router.route('/decks/new')
-  .get(decks.new);
+  .get(secureRoute, decks.new);
 router.route('/decks/:id')
-  .get(decks.show)
-  .put(decks.update)
-  .delete(decks.delete);
+  .get(secureRoute, decks.show)
+  .put(secureRoute, decks.update)
+  .delete(secureRoute, decks.delete);
 router.route('/decks/:id/edit')
-  .get(decks.edit);
+  .get(secureRoute, decks.edit);
 router.route('/decks/:id/add')
-  .post(decks.addKanji);
+  .post(secureRoute, decks.addKanji);
 
 router.route('/kanjis')
-  .get(kanjis.index);
+  .get(secureRoute, kanjis.index);
 router.route('/kanjis/:kanjiid/:deckid')
-  .get(kanjis.show)
-  .delete(kanjis.delete);
+  .get(secureRoute, kanjis.show)
+  .delete(secureRoute, kanjis.delete);
 
 router.route('/proxies/deck')
   .get(proxy.decksIndex);
