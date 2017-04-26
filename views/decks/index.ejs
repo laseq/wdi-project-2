@@ -4,9 +4,9 @@
   <% user.decks.forEach(deck => { %>
     <a href="/decks/<%= deck._id %>">
       <li class="deck-image">
-          <img src="images/deck-img.png" class="deck-photo">
-          <p class="deck-name"><%= deck.name %></p>
-        </li>
+        <img src="images/deck-img.png" class="deck-photo">
+        <p class="deck-name"><%= deck.name %></p>
+      </li>
     </a>
   <% }); %>
     <a href="/decks/new %>">

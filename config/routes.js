@@ -20,10 +20,15 @@ function secureRoute(req, res, next) {
 
 router.get('/', (req, res) => res.render('statics/home'));
 
-// router.route('/grades')
+// router.route('/_grades')
 //   .get(grades.index);
-// router.route('/grades/:id')
+// router.route('/_grades/:id')
 //   .get(grades.show);
+
+router.route('/grades')
+  .get(grades.index);
+router.route('/grades/:id')
+  .get(grades.show);
 
 router.route('/lessons')
   .get(lessons.index);

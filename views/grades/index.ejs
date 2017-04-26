@@ -1,46 +1,13 @@
-<h1>Grades Index</h1>
+<h1>Lesson Grades Index</h1>
+<%# This gets 'lessons' parsed from the grades controller %>
 
-<% let total = 0; %>
-<% let gradeNotFound = 0; %>
-<% let kanjisWithoutGrade = []; %>
-<% let gradeCount = []; %>
-<% for (let i=0; i<7; i++) { %>
-  <% gradeCount[i] = 0; %>
-<% } %>
-
-<% kanjis.forEach(kanji => { %>
-  <% gradeCount[kanji.grade - 1]++; %>
-  <% total++ %>
-  <% if (kanji.grade === 'No data') { %>
-    <% kanjisWithoutGrade.push(kanji.character); %>
-    <% gradeNotFound++ %>
+<ul>
+  <% for (let i=0; i<8; i++) { %>
+    <a href="/grades/<%= i+1 %>">
+      <li class="deck-image">
+        <img src="images/deck-img.png" class="deck-photo">
+        <p class="deck-name"><%= i+1 %></p>
+      </li>
+    </a>
   <% } %>
-<% }); %>
-
-<% for (let i=0; i<7; i++) { %>
-  <a href="grades/<%= i+1 %>"><h3><%= (i<6) ? `Grade ${i+1}`:`Extra`%></h3></a>
-  <%= gradeCount[i] %>
-<% } %>
-
-<a href="grades/7"><h3>Extra</h3></a>
-<%= gradeNotFound %>
-<%= kanjisWithoutGrade %>
-
-<h3>Total</h3>
-<%= total %>
-
-<h3>Grades not found</h3>
-<%= gradeNotFound %>
-<%= kanjisWithoutGrade %>
-
-
-<% for (let i=0; i<10; i++) { %>
-  <p><%= kanjis[i].character %></p>
-  <p><%= kanjis[i]['onJp'] %></p>
-  <p><%= kanjis[i]['onEn'] %></p>
-  <p><%= kanjis[i]['kunJp'] %></p>
-  <p><%= kanjis[i]['kunEn'] %></p>
-  <p><%= kanjis[i].meaning %></p>
-  <p><%= kanjis[i].grade %></p>
-  <p><%= kanjis[i]['writingUrl'] %></p>
-<% } %>
+</ul>
