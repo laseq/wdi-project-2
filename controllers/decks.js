@@ -164,5 +164,5 @@ module.exports = {
   edit: decksEdit,
   update: decksUpdate,
   delete: decksDelete,
-  addKanji: decksAddKanji,
+  addKanji: decksAddKanji
 };

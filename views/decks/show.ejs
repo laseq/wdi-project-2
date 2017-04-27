@@ -74,11 +74,11 @@
     <h3>Add Kanji to Deck</h3>
       <div class="kanjis-in-modal">
         <% for (let i=1; i< 8; i++) { %>
-          <p>Grade <%= i %> Kanji</p>
+          <h5 class="modal-grade-num">Grade <%= i %> Kanji</h5>
           <ul class="deck-modal-kanji-list">
             <% allKanjis[i-1].forEach(kanji => { %>
-              <a href="#">
-                <li class="deck-modal-kanji-li">
+              <a class="clickable-kanji" data="<%= kanji._id %>" href="#">
+                <li class="deck-modal-kanji-li" data="<%= kanji._id %>">
                   <%= kanji.character %>
                 </li>
               </a>

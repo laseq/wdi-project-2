@@ -113,14 +113,39 @@ $(function() {
       const thisIndex = $(this).attr('data');
       console.log('thisIndex', thisIndex);
       $('.carousel.carousel-slider').carousel('set', thisIndex);
-      //$('.carousel').carousel('set', 4);
     });
 
+    // Show the kanji list modal from the show deck page
     $('#btnListKanjiToAddToDeck').on('click', function(){
-      $('#addKanjisFromDeckShow')
+      $('#addKanjisFromDeckShow');
     });
 
   }
+
+  // Add a kanji to the deck from the kanji list modal in the deck show page
+  $('.clickable-kanji').on('click', (e) => {
+    e.preventDefault();
+    console.log('Got inside the clickable-kanji on click function');
+    console.log('$(this).attr(data)', $(this).attr('data'));
+    console.log('$(e.target).attr(data)', $(e.target).attr('data'));
+    console.log('$(e.target).data(data)', $(e.target).data('data'));
+
+    const data   = {
+      deckId: $('#h3-deck-name').attr('data'),
+      kanjiId: $(e.target).attr('data')
+    };
+
+    console.log('data.deckId', data.deckId);
+    console.log('data.kanjiId', data.kanjiId);
+
+    $.post(`/decks/${data.deckId}/add`, data)
+    .done(data => {
+      console.log('SUCCESS', data);
+      $('#addKanjisFromDeckShow').modal('close');
+      location.reload();
+    })
+    .fail(console.error);
+  });
 
   // The code below is redundant as the lessons page has been changed
   // To enable the 'select' dropdown boxes in Materialize
