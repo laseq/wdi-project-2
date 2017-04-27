@@ -105,18 +105,18 @@ body {
 .left-right-buttons {
   margin-top: 20px;
 }
-.prev, .next, .add-deck-btn, .remove-deck-btn, .edit-deck-btn {
+.prev, .next, .add-deck-btn, .remove-deck-btn, .edit-deck-btn, .remove-kanji-btn {
   background-color: $theme-color-3;
   &:hover {
     background-color: $theme-color-3;
     opacity: 0.8;
   }
 }
-.prev, .next, .remove-deck-btn, .edit-deck-btn {
+.prev, .next, .remove-deck-btn, .edit-deck-btn, .remove-kanji-btn {
   border-radius: 0px;
 }
 
-.remove-deck-btn, .edit-deck-btn {
+.remove-deck-btn, .edit-deck-btn, .remove-kanji-btn {
   width: 200px;
   margin-bottom: 20px;
 }
@@ -140,7 +140,7 @@ body {
   height: 200px;
   margin: 10px 10px;
   text-align: center;
-  background-color: $theme-color-2;
+  background-color: #fffbf9;
 
   .deck-photo {
     //background-image: url('/images/deck-img.png');
@@ -166,4 +166,53 @@ body {
 
 .container {
   width: 80%;
+}
+
+.lesson-page-top {
+  position: relative;
+
+  #lesson-show-page {
+    display: inline-block;
+  }
+  .next-lesson {
+    display: inline-block;
+    color: $theme-color-1;
+    display: inline-block;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    visibility: hidden;
+  }
+  .big-arrow {
+    font-size: 1.5em;
+    position: relative;
+    top: 0.1em;
+  }
+}
+
+.modal-footer {
+  #add-new-deck-lesson {
+    position: relative;
+    left: 4%;
+    top: 25%;
+    text-transform: uppercase;
+    color: $theme-color-3;
+  }
+  input {
+    color: $theme-color-3;
+  }
+}
+
+.kanjis-in-deck {
+
+  .kanji-list-in-deck {
+    display: inline-block;
+    font-size: 32px;
+    border: 1px solid black;
+    background-color: white;
+    padding: 1.2em;
+    margin: 0.2em;
+    color: black;
+  }
+
 }

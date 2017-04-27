@@ -14,7 +14,7 @@
 <% if (deck.kanjis.length !== 0) { %>
   <div class="carousel carousel-slider center">
     <% deck.kanjis.forEach(kanji => { %>
-      <div class="carousel-item white black-text">
+      <div id="<%= kanji._id %>" class="carousel-item white black-text">
         <div class="kanji-main">
           <h1 data-id="<%= kanji._id %>"><%= kanji.character %></h1>
         </div>
@@ -45,3 +45,18 @@
     <p>You can add them from your study and review sessions</p>
   </div>
 <% } %>
+
+<div class="section">
+  <h4>Kanjis in this deck</h4>
+  <% let index = 0; %>
+  <ul class="kanjis-in-deck">
+    <% deck.kanjis.forEach(kanji => { %>
+      <a data="<%= index %>" href="#">
+        <li class="kanji-list-in-deck">
+          <%= kanji.character %>
+        </li>
+      </a>
+      <% index++ %>
+    <% }); %>
+  </ul>
+</div>

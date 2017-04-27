@@ -78,7 +78,6 @@ function decksUpdate(req, res, next) {
       }
     }
 
-
     return deck.save();
   })
   .then((deck) => res.redirect(`/decks/${deck.id}`))

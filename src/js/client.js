@@ -1,23 +1,50 @@
-console.log('hello world');
+console.log('client.js loaded');
 
 $(function() {
+
+  let lessonProgressCount = 0;
+
   $('.button-collapse').sideNav();
 
   if ($('.carousel').length > 0) {
-    $('.carousel.carousel-slider').carousel({fullWidth: true});
+    $('.carousel.carousel-slider').carousel({ fullWidth: true });
+
     $('.prev').on('click', () => {
-      $('.carousel.carousel-slider').carousel('prev');
+      if (!$('#lesson-show-page').length){
+        $('.carousel.carousel-slider').carousel('prev');
+      } else if (lessonProgressCount > 0) {
+        $('.carousel.carousel-slider').carousel('prev');
+        lessonProgressCount--;
+      }
+      console.log('lessonProgressCount', lessonProgressCount);
     });
 
     $('.next').on('click', () => {
-      $('.carousel.carousel-slider').carousel('next');
+      if (!$('#lesson-show-page').length) {
+        $('.carousel.carousel-slider').carousel('next');
+      } else if (lessonProgressCount < parseInt($('#proxy-data').text())-2) {
+        $('.carousel.carousel-slider').carousel('next');
+        lessonProgressCount++;
+      } else if (lessonProgressCount === parseInt($('#proxy-data').text())-2) {
+        $('.carousel.carousel-slider').carousel('next');
+        lessonProgressCount++;
+        console.log('End of lesson');
+        $('.next-lesson').css('visibility', 'visible');
+        // At end of lesson, make some transition across the screen
+        // Possibly a link to the next lesson
+        // Mark this on the user's progress that the lesson has been completed
+        // And mark this lesson with a green mark somewhere
+        // functionToRunAtEndOfLesson();
+      }
+      console.log('lessonProgressCount', lessonProgressCount);
+
     });
 
     $('#addToDeck form').on('submit', (e) => {
       e.preventDefault();
 
       const data   = {
-        deckId: $('#addToDeck form input[name=deck]').val(),
+        deckId: $('#addToDeck form input[name=deck]:checked').val(),
         kanjiId: $('.active h1').data('id')
       };
 
@@ -43,18 +70,55 @@ $(function() {
         type: 'delete'
       }).done(() => {
         console.log('done');
+        //$('.carousel.carousel-slider').carousel();
       });
+    });
 
-      // $.post(`/kanjis/${data.kanjiId}/${data.deckId}`, data)
-      // .done(data => {
-      //   console.log('SUCCESS', data);
-      // })
-      // .fail(console.error);
+    $('#add-new-deck-lesson').on('click', function(){
+      $('#addToDeck').modal('close');
+    });
 
+    // Add a new deck in the lesson and add it in the modal '#addToDeck'
+    $('#add-deck-form').submit(function(e){
+      e.preventDefault();
+      $.ajax({
+        url: '/decks',
+        type: 'post',
+        data: $('#add-deck-form').serialize(),
+        success: function(){
+          console.log('Ajax post worked for #add-deck-form');
+
+          // jQuery AJAX
+          $.get('/proxies/deck')
+            .done(data => {
+              const jsonDecks = JSON.parse($(data).find('#proxy-data').text());
+              console.log(jsonDecks);
+              const lastDeck = jsonDecks[jsonDecks.length-1];
+              console.log(lastDeck);
+
+              $('.deck-name-holder').append(`<p><input type="radio" id="deck-${lastDeck._id}" name="deck" value="${lastDeck._id}"><label for="deck-${lastDeck._id}">${lastDeck.name}</label></p>`);
+
+            })
+            .fail(err => {
+              console.log(err);
+            });
+        }
+      });
+      $('#modal1').modal('close');
+    });
+
+    // Get kanji on carousel with button click on displayed kanji
+    $('.kanjis-in-deck a').on('click', function(e){
+      e.preventDefault();
+      const thisIndex = $(this).attr('data');
+      console.log('thisIndex', thisIndex);
+      $('.carousel.carousel-slider').carousel('set', thisIndex);
+      //$('.carousel').carousel('set', 4);
     });
 
   }
 
+  // The code below is redundant as the lessons page has been changed
   // To enable the 'select' dropdown boxes in Materialize
   $('select').material_select();
   //$('.modal-trigger').leanModal();
@@ -115,41 +179,41 @@ $(function() {
     }); // End of $('#add-kanji-to-deck').submit
 
     // Add a new deck in the lesson and add it in the dropdown/select box
-    $('#add-deck-form').submit(function(e){
-      e.preventDefault();
-      $.ajax({
-        url: '/decks',
-        type: 'post',
-        data: $('#add-deck-form').serialize(),
-        success: function(){
-          //whatever you wanna do after the form is successfully submitted
-          console.log('Ajax post worked for #add-deck-form?');
-
-          // jQuery AJAX even shorter syntax
-          $.get('/proxies/deck')
-            .done(data => {
-              // when using .get(), passed data will automatically point to .responseJSON
-              // e.g. data === data.responseJSON from previous example
-              const jsonDecks = JSON.parse($(data).find('#proxy-data').text());
-
-              // Put this data into the dropdown/select boxes
-              $('#add-to-deck').empty();
-              $('#add-to-deck').append('<option selected="selected" disabled="disabled">Select a deck</option>');
-              $('#add-to-deck').append('<option id="add-new-deck" href="#modal1">Add New Deck</option>');
-              jsonDecks.forEach(deck => {
-                console.log(deck);
-                $('#add-to-deck').append(`<option data-deck-id="${deck._id}" value="${deck.name}">${deck.name}</option>`);
-              });
-              // The Materialize select box needs to be reloaded for the new info to be displayed
-              $('select').material_select();
-            })
-            .fail(err => {
-              console.log(err);
-            });
-        }
-      });
-      $('#modal1').modal('close');
-    });
+    // $('#add-deck-form').submit(function(e){
+    //   e.preventDefault();
+    //   $.ajax({
+    //     url: '/decks',
+    //     type: 'post',
+    //     data: $('#add-deck-form').serialize(),
+    //     success: function(){
+    //       //whatever you wanna do after the form is successfully submitted
+    //       console.log('Ajax post worked for #add-deck-form?');
+    //
+    //       // jQuery AJAX even shorter syntax
+    //       $.get('/proxies/deck')
+    //         .done(data => {
+    //           // when using .get(), passed data will automatically point to .responseJSON
+    //           // e.g. data === data.responseJSON from previous example
+    //           const jsonDecks = JSON.parse($(data).find('#proxy-data').text());
+    //
+    //           // Put this data into the dropdown/select boxes
+    //           $('#add-to-deck').empty();
+    //           $('#add-to-deck').append('<option selected="selected" disabled="disabled">Select a deck</option>');
+    //           $('#add-to-deck').append('<option id="add-new-deck" href="#modal1">Add New Deck</option>');
+    //           jsonDecks.forEach(deck => {
+    //             console.log(deck);
+    //             $('#add-to-deck').append(`<option data-deck-id="${deck._id}" value="${deck.name}">${deck.name}</option>`);
+    //           });
+    //           // The Materialize select box needs to be reloaded for the new info to be displayed
+    //           $('select').material_select();
+    //         })
+    //         .fail(err => {
+    //           console.log(err);
+    //         });
+    //     }
+    //   });
+    //   $('#modal1').modal('close');
+    // });
 
   }
 

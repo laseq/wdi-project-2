@@ -1,35 +1,21 @@
-// const Deck  = require('../models/deck');
+const Deck  = require('../models/deck');
 // const Kanji  = require('../models/kanji');
-//
-// function proxyGetDecks(req, res, next) {
-//   //const data = 1;
-//   Deck
-//     .find()
-//     .exec()
-//     .then(decks => {
-//       const jsonData = JSON.stringify(decks);
-//       res.render('proxies/deck', { jsonData });
-//     })
-//     .catch(err => {
-//       console.log('Error in proxyGetDecks: ', err);
-//     });
-// }
-//
-// // This is for a POST method
-// // function proxyGetOneKanji(req, res, next) {
-// //   //const data = 1;
-// //   Kanji
-// //     .findOne({ character: req.body.character })
-// //     .exec()
-// //     .then(kanjiItem => {
-// //       const jsonData = JSON.stringify(kanjiItem);
-// //       res.render('proxies/onekanji', { jsonData });
-// //     })
-// //     .catch(err => {
-// //       console.log('Error in proxyGetOneKanji:', err);
-// //     });
-// // }
-//
+
+function proxyGetDecks(req, res, next) {
+  //const data = 1;
+  Deck
+    .find()
+    .exec()
+    .then(decks => {
+      const jsonData = JSON.stringify(decks);
+      res.render('proxies/deck', { jsonData });
+    })
+    .catch(err => {
+      console.log('Error in proxyGetDecks: ', err);
+    });
+}
+
+// This is for a POST method
 // function proxyGetOneKanji(req, res, next) {
 //   //const data = 1;
 //   Kanji
@@ -43,7 +29,21 @@
 //       console.log('Error in proxyGetOneKanji:', err);
 //     });
 // }
-//
+
+// function proxyGetOneKanji(req, res, next) {
+//   //const data = 1;
+//   Kanji
+//     .findOne({ character: req.body.character })
+//     .exec()
+//     .then(kanjiItem => {
+//       const jsonData = JSON.stringify(kanjiItem);
+//       res.render('proxies/onekanji', { jsonData });
+//     })
+//     .catch(err => {
+//       console.log('Error in proxyGetOneKanji:', err);
+//     });
+// }
+
 // function proxyAddOneKanji(req, res, next) {
 //   Kanji
 //     .findOne({ character: req.body.character })
@@ -74,34 +74,34 @@
 //       console.log('Error in proxyGetOneKanji:', err);
 //     });
 // }
+
+// function decksUpdate(req, res, next) {
+//   Deck
+//     .findById(req.params.id)
+//     .then((deck) => {
+//       if(!deck) return res.status(404).render('statics/404');
 //
-// // function decksUpdate(req, res, next) {
-// //   Deck
-// //     .findById(req.params.id)
-// //     .then((deck) => {
-// //       if(!deck) return res.status(404).render('statics/404');
-// //
-// //       // for(const field in req.body) {
-// //       //   deck[field] = req.body[field];
-// //       // }
-// //       for(const field in req.body) {
-// //         if (Array.isArray(deck[field])) {
-// //           deck[field].push(req.body[field]);
-// //         } else {
-// //           deck[field] = req.body[field];
-// //         }
-// //       }
-// //
-// //
-// //       return deck.save();
-// //     })
-// //     .then((deck) => res.redirect(`/decks/${deck.id}`))
-// //     .catch(next);
-// // }
+//       // for(const field in req.body) {
+//       //   deck[field] = req.body[field];
+//       // }
+//       for(const field in req.body) {
+//         if (Array.isArray(deck[field])) {
+//           deck[field].push(req.body[field]);
+//         } else {
+//           deck[field] = req.body[field];
+//         }
+//       }
 //
 //
-// module.exports = {
-//   decksIndex: proxyGetDecks,
-//   getKanji: proxyGetOneKanji,
-//   addKanji: proxyAddOneKanji
-// };
+//       return deck.save();
+//     })
+//     .then((deck) => res.redirect(`/decks/${deck.id}`))
+//     .catch(next);
+// }
+
+
+module.exports = {
+  decksIndex: proxyGetDecks
+  // getKanji: proxyGetOneKanji,
+  // addKanji: proxyAddOneKanji
+};

@@ -5,7 +5,7 @@ const lessons       = require('../controllers/lessons');
 const registrations = require('../controllers/registrations');
 const sessions      = require('../controllers/sessions');
 const decks         = require('../controllers/decks');
-// const proxy         = require('../controllers/proxy');
+const proxy         = require('../controllers/proxy');
 const kanjis        = require('../controllers/kanjis');
 
 function secureRoute(req, res, next) {
@@ -65,8 +65,8 @@ router.route('/kanjis/:kanjiid/:deckid')
   .get(secureRoute, kanjis.show)
   .delete(secureRoute, kanjis.delete);
 
-// router.route('/proxies/deck')
-//   .get(proxy.decksIndex);
+router.route('/proxies/deck')
+  .get(proxy.decksIndex);
 //
 // router.route('/proxies/onekanji')
 //   .get(proxy.getKanji);
