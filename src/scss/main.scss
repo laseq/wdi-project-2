@@ -2,13 +2,12 @@
 @import "mixins";
 
 .hidden-data {
-	display: none;
+  display: none;
 }
 
 body {
   color: $theme-color-1;
   background-color: $theme-color-2;
-
   color: $theme-color-1;
   // background-image: url("../images/bg-2.png");
   //position: relative;
@@ -16,6 +15,14 @@ body {
   h1,h2,h3,h4,h5,h6,p {
     font-family: $heading-font;
   }
+
+  .parallax-container {
+    height: 1000px;
+    width: 2000px;
+  }
+
+
+
 
   nav {
     background-color: $theme-color-3;
@@ -48,26 +55,26 @@ body {
   border: 2px solid black;
   .carousel-item {
     position: relative;
-      .kanji-main {
-        width: 50%;
-        position: absolute;
-        left: 0;
-        top: 12%;
-      }
-      .text-group {
-        position: absolute;
-        right: 0;
-        width: 50%;
-      }
-      .onyomi {
-        top: 5%;
-      }
-      .kunyomi {
-        top: 35%;
-      }
-      .meaning {
-        top: 70%;
-      }
+    .kanji-main {
+      width: 50%;
+      position: absolute;
+      left: 0;
+      top: 12%;
+    }
+    .text-group {
+      position: absolute;
+      right: 0;
+      width: 50%;
+    }
+    .onyomi {
+      top: 5%;
+    }
+    .kunyomi {
+      top: 35%;
+    }
+    .meaning {
+      top: 70%;
+    }
 
   }
 }
@@ -134,13 +141,14 @@ body {
 }
 
 .deck-image {
-  border: 1px solid black;
+  //border: 1px solid black;
   display: inline-block;
   width: 200px;
   height: 200px;
   margin: 10px 10px;
   text-align: center;
   background-color: #fffbf9;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
   .deck-photo {
     //background-image: url('/images/deck-img.png');
@@ -154,6 +162,7 @@ body {
     // margin-top: 0;
     line-height: 0px;
     text-overflow: ellipsis;
+    color: $theme-color-1;
 
   }
 }
@@ -227,7 +236,7 @@ body {
 .kanjis-in-modal {
 
   .modal-grade-num {
-    
+
   }
 
   .deck-modal-kanji-list {

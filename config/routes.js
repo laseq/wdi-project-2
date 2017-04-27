@@ -7,6 +7,7 @@ const sessions      = require('../controllers/sessions');
 const decks         = require('../controllers/decks');
 const proxy         = require('../controllers/proxy');
 const kanjis        = require('../controllers/kanjis');
+const statics       = require('../controllers/statics');
 
 function secureRoute(req, res, next) {
   if (!req.session.userId) {
@@ -18,12 +19,13 @@ function secureRoute(req, res, next) {
   return next();
 }
 
-router.get('/', (req, res) => res.render('statics/home'));
-
 // router.route('/_grades')
 //   .get(grades.index);
 // router.route('/_grades/:id')
 //   .get(grades.show);
+
+router.route('/')
+.get(statics.index);
 
 router.route('/grades')
   .get(grades.index);

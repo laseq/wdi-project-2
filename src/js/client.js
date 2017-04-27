@@ -1,6 +1,7 @@
 console.log('client.js loaded');
 
 $(function() {
+  $('.parallax').parallax();
 
   let lessonProgressCount = 0;
 
