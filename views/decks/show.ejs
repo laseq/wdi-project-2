@@ -47,6 +47,11 @@
 <% } %>
 
 <div class="section">
+  <h4>Add Kanji to this deck</h4>
+  <a href="#addKanjisFromDeckShow">Add new kanji</a>
+</div>
+
+<div class="section">
   <h4>Kanjis in this deck</h4>
   <% let index = 0; %>
   <ul class="kanjis-in-deck">
@@ -59,4 +64,27 @@
       <% index++ %>
     <% }); %>
   </ul>
+</div>
+
+
+<!-- Modal Structure to list all kanjis -->
+<div id="addKanjisFromDeckShow" class="modal">
+
+  <div class="modal-content">
+    <h3>Add Kanji to Deck</h3>
+      <div class="kanjis-in-modal">
+        <% for (let i=1; i< 8; i++) { %>
+          <p>Grade <%= i %> Kanji</p>
+          <ul class="deck-modal-kanji-list">
+            <% allKanjis[i-1].forEach(kanji => { %>
+              <a href="#">
+                <li class="deck-modal-kanji-li">
+                  <%= kanji.character %>
+                </li>
+              </a>
+            <% }); %>
+          </ul>
+        <% } %>
+      </div>
+  </div>
 </div>

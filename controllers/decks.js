@@ -1,5 +1,6 @@
 const Deck  = require('../models/deck');
 const User  = require('../models/user');
+const Kanji = require('../models/kanji');
 
 function decksIndex(req, res, next) {
   User
@@ -37,15 +38,52 @@ function decksCreate(req, res, next) {
 }
 
 function decksShow(req, res, next) {
-  Deck
+  // Deck
+  // .findById(req.params.id)
+  // .exec()
+  // .then((deck) => {
+  //   if (!deck) return res.status(404).render('statics/404');
+  //   return Deck.populate(deck, { path: 'kanjis'});
+  // })
+  // .then(deck => res.render('decks/show', { deck }))
+  // .catch(next);
+  const p1 = Deck
   .findById(req.params.id)
   .exec()
   .then((deck) => {
     if (!deck) return res.status(404).render('statics/404');
     return Deck.populate(deck, { path: 'kanjis'});
+  });
+
+  const p2  = Kanji.find({ 'grade': '1' }).exec();
+  const p3  = Kanji.find({ grade: '2' }).exec();
+  const p4  = Kanji.find({ grade: '3' }).exec();
+  const p5  = Kanji.find({ grade: '4' }).exec();
+  const p6  = Kanji.find({ grade: '5' }).exec();
+  const p7  = Kanji.find({ grade: '6' }).exec();
+  const p8  = Kanji.find({ grade: '7' }).exec();
+
+  // Native Node method, NOT bluebird
+  Promise.all([p1, p2, p3, p4, p5, p6, p7, p8])
+  .then((values) => {
+
+    const kanjiGradeArray = [values[1], values[2], values[3], values[4], values[5], values[6], values[7], values[8]];
+
+
+    res.render('decks/show', {
+      deck: values[0],
+      allKanjis: kanjiGradeArray
+      // grade1Kanjis: values[1],
+      // grade2Kanjis: values[2],
+      // grade3Kanjis: values[3],
+      // grade4Kanjis: values[4],
+      // grade5Kanjis: values[5],
+      // grade6Kanjis: values[6],
+      // grade7Kanjis: values[7]
+    });
   })
-  .then(deck => res.render('decks/show', { deck }))
   .catch(next);
+
 }
 
 function decksEdit(req, res) {
@@ -126,5 +164,5 @@ module.exports = {
   edit: decksEdit,
   update: decksUpdate,
   delete: decksDelete,
-  addKanji: decksAddKanji
+  addKanji: decksAddKanji,
 };

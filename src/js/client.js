@@ -116,6 +116,10 @@ $(function() {
       //$('.carousel').carousel('set', 4);
     });
 
+    $('#btnListKanjiToAddToDeck').on('click', function(){
+      $('#addKanjisFromDeckShow')
+    });
+
   }
 
   // The code below is redundant as the lessons page has been changed
