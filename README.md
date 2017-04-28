@@ -24,7 +24,7 @@
 
 ## Project Summary
 
-![](https://cloud.githubusercontent.com/assets/15388548/25508432/e3a26e34-2ba9-11e7-9b61-f1b51480fc38.png)
+![](https://cloud.githubusercontent.com/assets/15388548/25550629/9f324124-2c72-11e7-9216-61da7935a8c3.png)
 
 My project of choice was a web app to enable learners of Japanese to improve their Kanji (Japanese symbol) competence. As a learner of the Japanese language I felt that it would be an exciting project to embark on. Such an app would fulfil the project requirements with RESTful routes and include some logic for lesson reviews.
 
@@ -51,17 +51,8 @@ My project of choice was a web app to enable learners of Japanese to improve the
 
 #### Wireframing
 
-![](https://cloud.githubusercontent.com/assets/15388548/25507046/b5716b26-2ba1-11e7-8a79-454fcac611a2.png)
-**Authentication**
-
-![](https://cloud.githubusercontent.com/assets/15388548/25507100/fa97bc3c-2ba1-11e7-942a-073656b50910.png)
-**Landing Page**
-
-![](https://cloud.githubusercontent.com/assets/15388548/25507116/13a868de-2ba2-11e7-9bc4-ae36134781d9.png)
-**Lesson Index**
-
-![](https://cloud.githubusercontent.com/assets/15388548/25507146/466f4cec-2ba2-11e7-868c-3c166a12c47c.png)
-**Lesson Experience**
+![wireframes](https://cloud.githubusercontent.com/assets/15388548/25550146/a4818b84-2c6e-11e7-8cdc-6ed08f378d9e.png)
+**Authentication, Dashboard, Lesson Index and Lesson Experience**
 
 ### Models
 I identified the following schemas that needed to be created in order to provide the app functionality.
@@ -117,25 +108,25 @@ I chose to use the Japanese school grade convention in my app as the Kanji Alive
 
 ##End Product
 
-![](https://cloud.githubusercontent.com/assets/15388548/25508432/e3a26e34-2ba9-11e7-9b61-f1b51480fc38.png)
+![](https://cloud.githubusercontent.com/assets/15388548/25550629/9f324124-2c72-11e7-9216-61da7935a8c3.png)
 **Homepage with Materialize Parallax effect**
 
-![](https://cloud.githubusercontent.com/assets/15388548/25508600/13b2156a-2bab-11e7-921d-a178fc423e58.png)
+![](https://cloud.githubusercontent.com/assets/15388548/25550508/8aea3588-2c71-11e7-8152-66c50d93719d.png)
 **Lessons grouped by grades**
 
-![](https://cloud.githubusercontent.com/assets/15388548/25508671/a5dc1b70-2bab-11e7-94ef-19f9eb37720a.png)
+![](https://cloud.githubusercontent.com/assets/15388548/25550296/e795407c-2c6f-11e7-8945-3404b8c5e743.png)
 **Lesson selection**
 
-![](https://cloud.githubusercontent.com/assets/15388548/25508687/d70a430c-2bab-11e7-9f1c-ab41110edf12.png)
+![](https://cloud.githubusercontent.com/assets/15388548/25550314/0ba22192-2c70-11e7-9faf-f2805b316d64.png)
 **Lesson Experience**
 
 ![](https://cloud.githubusercontent.com/assets/15388548/25508731/123d964a-2bac-11e7-91b8-8efef657178e.png)
 **Kanji Browsing**
 
-![](https://cloud.githubusercontent.com/assets/15388548/25508761/36252f3c-2bac-11e7-8d31-1f245cc2e70d.png)
+![](https://cloud.githubusercontent.com/assets/15388548/25550337/35b4a1d0-2c70-11e7-9330-06d707c8bae1.png)
 **Kanji Browsing**
 
-![](https://cloud.githubusercontent.com/assets/15388548/25508787/69061754-2bac-11e7-857d-a674f80c759a.png)
+![](https://cloud.githubusercontent.com/assets/15388548/25550369/5935631a-2c70-11e7-9fa8-8ee99d96f3c7.png)
 **Adding Kanji to a deck**
 
 ##Final Thoughts
