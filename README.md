@@ -25,7 +25,6 @@
 ## Project Summary
 
 ![](https://cloud.githubusercontent.com/assets/15388548/25508432/e3a26e34-2ba9-11e7-9b61-f1b51480fc38.png)
-**Homepage with Materialize Parallax effect**
 
 My project of choice was a web app to enable learners of Japanese to improve their Kanji (Japanese symbol) competence. As a learner of the Japanese language I felt that it would be an exciting project to embark on. Such an app would fulfil the project requirements with RESTful routes and include some logic for lesson reviews.
 
@@ -117,6 +116,9 @@ requestPromise(options)
 I chose to use the Japanese school grade convention in my app as the Kanji Alive API had grade properties attached to the Kanji characters.
 
 ##End Product
+
+![](https://cloud.githubusercontent.com/assets/15388548/25508432/e3a26e34-2ba9-11e7-9b61-f1b51480fc38.png)
+**Homepage with Materialize Parallax effect**
 
 ![](https://cloud.githubusercontent.com/assets/15388548/25508600/13b2156a-2bab-11e7-921d-a178fc423e58.png)
 **Lessons grouped by grades**
