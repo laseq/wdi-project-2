@@ -23,7 +23,7 @@
   <%# <div class="container">%>
     <main class="">
       <% for (const type in messages) { %>
-        <p class="alert alert-<%= type %>"><%= messages[type] %></p>
+        <p class="container alert alert-<%= type %>"><%= messages[type] %></p>
       <% } %>
       <%- body %>
     </main>

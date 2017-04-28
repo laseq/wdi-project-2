@@ -33,6 +33,10 @@ body {
       color: $theme-color-2;
     }
 
+    li a {
+      font-size: 16px;
+    }
+
     a {
       transition: all .5s ease-in-out !important;
       -moz-transition: all .3s ease-in-out;
@@ -213,7 +217,7 @@ body {
   display: inline-block;
   width: 400px;
   height: 200px;
-  margin: 20px;
+  margin: 20px 40px;
   text-align: center;
   background-color: #fffbf9;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -339,13 +343,22 @@ body {
       margin: 0.1em;
       color: black;
     }
-
-
   }
+}
 
+.alert-info {
+  position: absolute;
+  top: 15%;
+  left: 15%;
+  font-size: 24px;
 }
 
 @media screen and (max-width: 640px) {
+
+  h1 {
+    font-size: 45px;
+    text-align: center;
+  }
 
   .kanji-main {
     position: absolute;

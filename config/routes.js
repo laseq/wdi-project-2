@@ -28,14 +28,14 @@ router.route('/')
 .get(statics.index);
 
 router.route('/grades')
-  .get(grades.index);
+  .get(secureRoute, grades.index);
 router.route('/grades/:id')
-  .get(grades.show);
+  .get(secureRoute, grades.show);
 
 router.route('/lessons')
-  .get(lessons.index);
+  .get(secureRoute, lessons.index);
 router.route('/lessons/:id')
-  .get(lessons.show);
+  .get(secureRoute, lessons.show);
 
 router.route('/register')
   .get(registrations.new)
