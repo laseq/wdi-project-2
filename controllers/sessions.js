@@ -15,7 +15,7 @@ function sessionsCreate(req, res) {
       }
 
       req.session.userId = user.id;
-      
+
       req.flash('info', `Welcome back, ${user.username}!`);
       return res.redirect('/');
     });
@@ -24,7 +24,6 @@ function sessionsCreate(req, res) {
 function sessionsDelete(req, res) {
   return req.session.regenerate(() => res.redirect('/'));
 }
-
 
 module.exports = {
   new: sessionsNew,

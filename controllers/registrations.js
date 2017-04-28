@@ -19,10 +19,6 @@ function registrationsCreate(req, res) {
     });
 }
 
-
-
-
-
 module.exports = {
   new: registrationsNew,
   create: registrationsCreate

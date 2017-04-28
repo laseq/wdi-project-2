@@ -38,15 +38,6 @@ function decksCreate(req, res, next) {
 }
 
 function decksShow(req, res, next) {
-  // Deck
-  // .findById(req.params.id)
-  // .exec()
-  // .then((deck) => {
-  //   if (!deck) return res.status(404).render('statics/404');
-  //   return Deck.populate(deck, { path: 'kanjis'});
-  // })
-  // .then(deck => res.render('decks/show', { deck }))
-  // .catch(next);
   const p1 = Deck
   .findById(req.params.id)
   .exec()
@@ -73,13 +64,6 @@ function decksShow(req, res, next) {
     res.render('decks/show', {
       deck: values[0],
       allKanjis: kanjiGradeArray
-      // grade1Kanjis: values[1],
-      // grade2Kanjis: values[2],
-      // grade3Kanjis: values[3],
-      // grade4Kanjis: values[4],
-      // grade5Kanjis: values[5],
-      // grade6Kanjis: values[6],
-      // grade7Kanjis: values[7]
     });
   })
   .catch(next);
@@ -105,9 +89,6 @@ function decksUpdate(req, res, next) {
   .then((deck) => {
     if(!deck) return res.status(404).render('statics/404');
 
-    // for(const field in req.body) {
-    //   deck[field] = req.body[field];
-    // }
     for(const field in req.body) {
       if (Array.isArray(deck[field])) {
         deck[field].push(req.body[field]);

@@ -2,7 +2,6 @@ const Kanji = require('../models/kanji');
 const Deck  = require('../models/deck');
 
 function kanjisIndex(req, res, next) {
-  //const p1 = Kanji.find(req.query).exec();
   const p1 = Kanji.find(req.query ).exec();
   // Find decks where you are the owner
   const p2 = Deck.find({ user: res.locals.user._id}).exec();
