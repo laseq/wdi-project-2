@@ -1,90 +1,99 @@
-<h1>Decks</h1>
-<div class="show-deck-top-row">
-  <h3 id="h3-deck-name" data="<%= deck._id %>"><%= deck.name %></h3>
-  <div class="deck-show-top-buttons">
-    <a class="btn edit-deck-btn" href="/decks/<%= deck.id %>/edit">Edit Deck</a>
-    <form method="POST" action="/decks/<%= deck.id %>">
-      <input type="hidden" name="_method" value="DELETE">
-      <button class="btn remove-deck-btn">Delete Deck</button>
-    </form>
-      <button class="btn remove-kanji-btn" id="remove-kanji">Remove kanji</button>
-  </div>
-</div>
-
-<% if (deck.kanjis.length !== 0) { %>
-  <div class="carousel carousel-slider center">
-    <% deck.kanjis.forEach(kanji => { %>
-      <div id="<%= kanji._id %>" class="carousel-item white black-text">
-        <div class="kanji-main">
-          <h1 data-id="<%= kanji._id %>"><%= kanji.character %></h1>
-        </div>
-
-        <div class="text-group onyomi">
-          <h5 class="black-text jp-text"><%= kanji.onJp %></h5>
-          <h5 class="black-text en-text"><%= kanji.onEn %></h5>
-        </div>
-
-        <div class="text-group kunyomi">
-          <h5 class="black-text jp-text"><%= kanji.kunJp %></h5>
-          <h5 class="black-text en-text"><%= kanji.kunEn %></h5>
-        </div>
-
-        <div class="text-group meaning">
-          <h5 class="black-text meaning-text"><%= kanji.meaning %></h5>
-        </div>
+<div class="container">
+  <h1>My Decks</h1>
+  <div class="show-deck-top-row">
+    <h3 id="h3-deck-name" data="<%= deck._id %>"><%= deck.name %></h3>
+    <div class="deck-show-top-buttons row center">
+      <div class="col s12 m5 l3">
+        <a class="btn edit-deck-btn" href="/decks/<%= deck.id %>/edit">Edit Deck</a>
       </div>
-    <% }); %>
-  </div>
-  <div class="row left-right-buttons">
-    <div class="col s3 offset-s2 prev btn"><span class="">Previous</span></div>
-    <div class="col s3 offset-s2 next btn"><span class="">Next</span></div>
-  </div>
-<% } else { %>
-  <div class="no-kanji-in-deck">
-    <p>Add some new kanji to this deck</p>
-    <p>You can add them from your study and review sessions</p>
-  </div>
-<% } %>
-
-<div class="section">
-  <h4>Add Kanji to this deck</h4>
-  <a href="#addKanjisFromDeckShow">Add new kanji</a>
-</div>
-
-<div class="section">
-  <h4>Kanjis in this deck</h4>
-  <% let index = 0; %>
-  <ul class="kanjis-in-deck">
-    <% deck.kanjis.forEach(kanji => { %>
-      <a data="<%= index %>" href="#">
-        <li class="kanji-list-in-deck">
-          <%= kanji.character %>
-        </li>
-      </a>
-      <% index++ %>
-    <% }); %>
-  </ul>
-</div>
-
-
-<!-- Modal Structure to list all kanjis -->
-<div id="addKanjisFromDeckShow" class="modal">
-
-  <div class="modal-content">
-    <h3>Add Kanji to Deck</h3>
-      <div class="kanjis-in-modal">
-        <% for (let i=1; i< 8; i++) { %>
-          <h5 class="modal-grade-num">Grade <%= i %> Kanji</h5>
-          <ul class="deck-modal-kanji-list">
-            <% allKanjis[i-1].forEach(kanji => { %>
-              <a class="clickable-kanji" data="<%= kanji._id %>" href="#">
-                <li class="deck-modal-kanji-li" data="<%= kanji._id %>">
-                  <%= kanji.character %>
-                </li>
-              </a>
-            <% }); %>
-          </ul>
-        <% } %>
+      <div class="col s12 m5 l3">
+        <form method="POST" action="/decks/<%= deck.id %>">
+          <input type="hidden" name="_method" value="DELETE">
+          <button class="btn remove-deck-btn">Delete Deck</button>
+        </form>
       </div>
+      <div class="col s12 m5 l3">
+        <a href="#addKanjisFromDeckShow" class="btn add-kanji-btn" id="add-kanji-to-deck-link">Add Kanji</a>
+      </div>
+      <div class="col s12 m5 l3">
+        <button class="btn remove-kanji-btn" id="remove-kanji">Remove kanji</button>
+      </div>
+    </div>
+  </div>
+
+  <% if (deck.kanjis.length !== 0) { %>
+    <div class="carousel carousel-slider center">
+      <% deck.kanjis.forEach(kanji => { %>
+        <div id="<%= kanji._id %>" class="carousel-item white black-text">
+          <div class="kanji-main">
+            <h1 data-id="<%= kanji._id %>"><%= kanji.character %></h1>
+          </div>
+
+          <div class="text-group onyomi">
+            <h5 class="black-text jp-text"><%= kanji.onJp %></h5>
+            <h5 class="black-text en-text"><%= kanji.onEn %></h5>
+          </div>
+
+          <div class="text-group kunyomi">
+            <h5 class="black-text jp-text"><%= kanji.kunJp %></h5>
+            <h5 class="black-text en-text"><%= kanji.kunEn %></h5>
+          </div>
+
+          <div class="text-group meaning">
+            <h5 class="black-text meaning-text"><%= kanji.meaning %></h5>
+          </div>
+        </div>
+      <% }); %>
+    </div>
+    <div class="row left-right-buttons">
+      <div class="col s3 offset-s2 prev btn"><span class="">Previous</span></div>
+      <div class="col s3 offset-s2 next btn"><span class="">Next</span></div>
+    </div>
+
+    <div class="section">
+      <h4>Kanji characters in this deck</h4>
+      <% let index = 0; %>
+      <ul class="kanjis-in-deck">
+        <% deck.kanjis.forEach(kanji => { %>
+          <a data="<%= index %>" href="#">
+            <li class="kanji-list-in-deck">
+              <%= kanji.character %>
+            </li>
+          </a>
+          <% index++ %>
+        <% }); %>
+      </ul>
+    </div>
+
+  <% } else { %>
+    <div class="no-kanji-in-deck">
+      <p>Add some new kanji characters to this deck</p>
+      <p>You can add them from this page, your study sessions and the kanji browsing page.</p>
+    </div>
+  <% } %>
+
+
+
+
+  <!-- Modal Structure to list all kanjis -->
+  <div id="addKanjisFromDeckShow" class="modal">
+
+    <div class="modal-content">
+      <h3>Add Kanji to Deck</h3>
+        <div class="kanjis-in-modal">
+          <% for (let i=1; i< 8; i++) { %>
+            <h5 class="modal-grade-num">Grade <%= i %> Kanji</h5>
+            <ul class="deck-modal-kanji-list">
+              <% allKanjis[i-1].forEach(kanji => { %>
+                <a class="clickable-kanji" data="<%= kanji._id %>" href="#">
+                  <li class="deck-modal-kanji-li" data="<%= kanji._id %>">
+                    <%= kanji.character %>
+                  </li>
+                </a>
+              <% }); %>
+            </ul>
+          <% } %>
+        </div>
+    </div>
   </div>
 </div>

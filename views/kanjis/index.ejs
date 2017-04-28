@@ -1,109 +1,111 @@
-<h1 class="center">Browse Characters</h1>
+<div class="container">
+  <h1 class="center">Browse Characters</h1>
 
-<h4>Browse by grade</h4>
+  <h4>Browse by grade</h4>
 
-<ul class="grade-ul">
-  <a class="grade-sort" href="/kanjis"><li>All</li></a>
-  <% for (let i=1; i< 8; i++) { %>
-    <a class="grade-sort" href="/kanjis?grade=<%= i %>"><li><%= i %></li></a>
-  <% } %>
-</ul>
-
-<div class="section">
-  <div class="carousel carousel-slider center">
-    <% kanjis.forEach(kanji => { %>
-      <div class="carousel-item white black-text">
-
-          <div class="kanji-main">
-            <h1 data-id="<%= kanji._id %>"><%= kanji.character %></h1>
-          </div>
-
-          <div class="text-group onyomi">
-            <h5 class="black-text jp-text"><%= kanji.onJp %></h5>
-            <h5 class="black-text en-text"><%= kanji.onEn %></h5>
-          </div>
-
-          <div class="text-group kunyomi">
-            <h5 class="black-text jp-text"><%= kanji.kunJp %></h5>
-            <h5 class="black-text en-text"><%= kanji.kunEn %></h5>
-          </div>
-
-          <div class="text-group meaning">
-            <h5 class="black-text meaning-text"><%= kanji.meaning %></h5>
-          </div>
-
-      </div>
-    <% }); %>
-  </div>
-
-  <div class="row left-right-buttons">
-    <div class="col s3 offset-s2 prev btn"><span class="">Previous</span></div>
-    <div class="col s3 offset-s2 next btn"><span class="">Next</span></div>
-    <div class="col s1 right">
-      <a class="btn-floating add-deck-btn btn-small" href="#addToDeck"><i class="material-icons">add</i></a>
-    </div>
-  </div>
-</div>
-
-<div class="section">
-  <h4>Kanji List</h4>
-  <% let index = 0; %>
-  <ul class="kanjis-in-deck">
-    <% kanjis.forEach(kanji => { %>
-      <a data="<%= index %>" href="#">
-        <li class="kanji-list-in-browse">
-          <%= kanji.character %>
-        </li>
-      </a>
-      <% index++ %>
-    <% }); %>
+  <ul class="grade-ul">
+    <a class="grade-sort" href="/kanjis"><li>All</li></a>
+    <% for (let i=1; i< 8; i++) { %>
+      <a class="grade-sort" href="/kanjis?grade=<%= i %>"><li><%= i %></li></a>
+    <% } %>
   </ul>
-</div>
 
-<!-- Modal Structure -->
-<div id="addToDeck" class="modal">
-  <form>
-  <div class="modal-content">
-    <h4>Add Kanji to Deck</h4>
-      <% decks.forEach(deck => { %>
-        <p>
-          <input type="radio" id="deck-<%= deck._id %>" name="deck" value="<%= deck._id %>">
-          <label for="deck-<%= deck._id %>"><%= deck.name %></label>
-        </p>
+  <div class="section">
+    <div class="carousel carousel-slider center">
+      <% kanjis.forEach(kanji => { %>
+        <div class="carousel-item white black-text">
+
+            <div class="kanji-main">
+              <h1 data-id="<%= kanji._id %>"><%= kanji.character %></h1>
+            </div>
+
+            <div class="text-group onyomi">
+              <h5 class="black-text jp-text"><%= kanji.onJp %></h5>
+              <h5 class="black-text en-text"><%= kanji.onEn %></h5>
+            </div>
+
+            <div class="text-group kunyomi">
+              <h5 class="black-text jp-text"><%= kanji.kunJp %></h5>
+              <h5 class="black-text en-text"><%= kanji.kunEn %></h5>
+            </div>
+
+            <div class="text-group meaning">
+              <h5 class="black-text meaning-text"><%= kanji.meaning %></h5>
+            </div>
+
+        </div>
       <% }); %>
     </div>
-    <div class="modal-footer">
-      <a id="add-new-deck-lesson" href="#modal1">Add new deck</a>
-      <input type="submit" class="modal-action waves-effect waves-green btn-flat" value="Add Kanji to Deck">
+
+    <div class="row left-right-buttons">
+      <div class="col s3 offset-s2 prev btn"><span class="">Previous</span></div>
+      <div class="col s3 offset-s2 next btn"><span class="">Next</span></div>
+      <div class="col s1 right">
+        <a class="btn-floating add-deck-btn btn-small" href="#addToDeck"><i class="material-icons">add</i></a>
+      </div>
     </div>
-  </form>
-</div>
+  </div>
 
-<!-- Modal Structure for add new deck -->
-<div id="modal1" class="modal">
-  <form id="add-deck-form" class="container" action="/decks" method="POST">
-    <div class="modal-content">
-      <h4>Add a Deck</h4>
+  <div class="section">
+    <h4>Kanji List</h4>
+    <% let index = 0; %>
+    <ul class="kanjis-in-deck">
+      <% kanjis.forEach(kanji => { %>
+        <a data="<%= index %>" href="#">
+          <li class="kanji-list-in-browse">
+            <%= kanji.character %>
+          </li>
+        </a>
+        <% index++ %>
+      <% }); %>
+    </ul>
+  </div>
 
-      <div class="row">
-        <div class="row modal-form-row">
-          <div class="input-field col s12">
-            <input name="name" id="input-deck-name" type="text" class="validate">
-            <label for="input-deck-name">New deck name</label>
+  <!-- Modal Structure -->
+  <div id="addToDeck" class="modal">
+    <form>
+    <div class="modal-content deck-name-holder">
+      <h4>Add Kanji to Deck</h4>
+        <% decks.forEach(deck => { %>
+          <p>
+            <input type="radio" id="deck-<%= deck._id %>" name="deck" value="<%= deck._id %>">
+            <label for="deck-<%= deck._id %>"><%= deck.name %></label>
+          </p>
+        <% }); %>
+      </div>
+      <div class="modal-footer">
+        <a id="add-new-deck-lesson" href="#modal1">Add new deck</a>
+        <input type="submit" class="modal-action waves-effect waves-green btn-flat" value="Add Kanji to Deck">
+      </div>
+    </form>
+  </div>
+
+  <!-- Modal Structure for add new deck -->
+  <div id="modal1" class="modal">
+    <form id="add-deck-form" class="container" action="/decks" method="POST">
+      <div class="modal-content">
+        <h4>Add a Deck</h4>
+
+        <div class="row">
+          <div class="row modal-form-row">
+            <div class="input-field col s12">
+              <input name="name" id="input-deck-name" type="text" class="validate">
+              <label for="input-deck-name">New deck name</label>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="modal-footer">
-      <div class="button-and-message">
-        <div class="advisory-message">
-          <p></p>
-        </div>
-        <div class="center-align">
-          <input id="form-submit-btn" class="waves-effect waves-light btn" type="submit" name="" value="Submit">
+      <div class="modal-footer">
+        <div class="button-and-message">
+          <div class="advisory-message">
+            <p></p>
+          </div>
+          <div class="center-align">
+            <input id="form-submit-btn" class="btn" type="submit" name="" value="Submit">
+          </div>
         </div>
       </div>
-    </div>
-  </form>
+    </form>
+  </div>
 </div>

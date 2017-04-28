@@ -1,11 +1,13 @@
-<h1>Lessons Index</h1>
-<ul>
-  <% lessons.forEach(lesson => { %>
-    <a href="/lessons/<%= lesson._id %>">
-      <li class="deck-image">
-          <img src="images/deck-img.png" class="deck-photo">
-          <p class="deck-name"><%= lesson.grade %></p>
-        </li>
-    </a>
-  <% }); %>
-<ul>
+<div class="container">
+  <h1>Lessons Index</h1>
+  <ul>
+    <% lessons.forEach(lesson => { %>
+      <a href="/lessons/<%= lesson._id %>">
+        <li class="deck-image">
+            <img src="images/deck-img.png" class="deck-photo">
+            <p class="deck-name"><%= lesson.grade %></p>
+          </li>
+      </a>
+    <% }); %>
+  <ul>
+</div>

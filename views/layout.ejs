@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,500,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Nunito:400,700" rel="stylesheet">
   <title>WDI Project 2</title>
@@ -20,13 +20,13 @@
 </head>
 <body>
   <% include ./partials/navbar %>
-  <div>
-    <main>
+  <%# <div class="container">%>
+    <main class="">
       <% for (const type in messages) { %>
         <p class="alert alert-<%= type %>"><%= messages[type] %></p>
       <% } %>
       <%- body %>
     </main>
-  </div>
+  <%# </div>%>
 </body>
 </html>

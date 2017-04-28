@@ -1,24 +1,24 @@
-<h1>Kanjis Show from deck</h1>
+<div class="container">
+  <h1>Kanjis Show from deck</h1>
 
-<%= kanjiItem %>
-<%= deckId %>
+  <p id="character"><%= kanjiItem.character %></p>
+  <p>On</p>
+  <p id="on-jp"><%= kanjiItem.onJp %></p>
+  <p id="on-en"><%= kanjiItem.onEn %></p>
+  <p>Kun</p>
+  <p id="kun-jp"><%= kanjiItem.kunJp %></p>
+  <p id="kun-en"><%= kanjiItem.kunEn %></p>
+  <p>Meaning</p>
+  <p id="meaning"><%= kanjiItem.meaning %></p>
+  <p>How to write</p>
+  <video width="320" height="240" controls>
+    <source id="writing-url" src="<%= kanjiItem.writingUrl %>" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
 
-<p id="character"><%= kanjiItem.character %></p>
-<p>On</p>
-<p id="on-jp"><%= kanjiItem.onJp %></p>
-<p id="on-en"><%= kanjiItem.onEn %></p>
-<p>Kun</p>
-<p id="kun-jp"><%= kanjiItem.kunJp %></p>
-<p id="kun-en"><%= kanjiItem.kunEn %></p>
-<p>Meaning</p>
-<p id="meaning"><%= kanjiItem.meaning %></p>
-<p>How to write</p>
-<video width="320" height="240" controls>
-  <source id="writing-url" src="<%= kanjiItem.writingUrl %>" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+  <form method="POST" action="/kanjis/<%= kanjiItem._id %>/<%= deckId %>">
+    <input type="hidden" name="_method" value="DELETE">
+    <button class="btn btn-danger">Remove from deck</button>
+  </form>
 
-<form method="POST" action="/kanjis/<%= kanjiItem._id %>/<%= deckId %>">
-  <input type="hidden" name="_method" value="DELETE">
-  <button class="btn btn-danger">Remove from deck</button>
-</form>
+</div>

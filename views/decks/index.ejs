@@ -1,18 +1,22 @@
-<h1>Decks Index</h1>
-<%# Decks controller passes in 'user' here with 'decks' populated%>
-<ul>
-  <% user.decks.forEach(deck => { %>
-    <a href="/decks/<%= deck._id %>">
-      <li class="deck-image">
-        <img src="images/deck-img.png" class="deck-photo">
-        <p class="deck-name"><%= deck.name %></p>
-      </li>
-    </a>
-  <% }); %>
-    <a href="/decks/new %>">
-      <li class="deck-image">
-        <img src="images/deck-img.png" class="deck-photo">
-        <p class="deck-name">Add new deck</p>
-      </li>
-    </a>
-<ul>
+<div class="container">
+  <h1>My Decks</h1>
+  <%# Decks controller passes in 'user' here with 'decks' populated%>
+  <div class="square-li-wrapper">
+    <ul class="square-li-ul">
+      <% user.decks.forEach(deck => { %>
+        <a href="/decks/<%= deck._id %>">
+          <li class="deck-image">
+            <img src="images/deck-img.png" class="deck-photo">
+            <p class="deck-name"><%= deck.name %></p>
+          </li>
+        </a>
+      <% }); %>
+        <a href="/decks/new %>">
+          <li class="deck-image">
+            <img src="images/add_green.png" class="add-icon">
+            <p class="deck-name">Add new deck</p>
+          </li>
+        </a>
+    <ul>
+  </div>
+</div>

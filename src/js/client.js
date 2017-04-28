@@ -71,6 +71,7 @@ $(function() {
         type: 'delete'
       }).done(() => {
         console.log('done');
+        location.reload();
         //$('.carousel.carousel-slider').carousel();
       });
     });
@@ -88,6 +89,7 @@ $(function() {
         data: $('#add-deck-form').serialize(),
         success: function(){
           console.log('Ajax post worked for #add-deck-form');
+          console.log('We\'re in here');
 
           // jQuery AJAX
           $.get('/proxies/deck')

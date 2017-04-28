@@ -1,31 +1,14 @@
-<h1>Lesson Grades Index</h1>
-<%# This gets 'lessons' parsed from the grades controller %>
+<div class="container">
+  <h1>Lesson Grades</h1>
+  <%# This gets 'lessons' parsed from the grades controller %>
 
-<ul>
-  <% for (let i=0; i<7; i++) { %>
-    <a href="/grades/<%= i+1 %>">
-      <li class="deck-image">
-        <img src="images/deck-img.png" class="deck-photo">
-        <p class="deck-name">Grade <%= i+1 %></p>
-      </li>
-    </a>
-  <% } %>
-</ul>
-
-<div class="row">
-  <div class="col s12 m3">
-    <div class="card">
-      <div class="card-image">
-        <img src="images/deck-img.png">
-        <span class="card-title">Card Title</span>
-      </div>
-      <div class="card-content">
-        <p>I am a very simple card. I am good at containing small bits of information.
-          I am convenient because I require little markup to use effectively.</p>
-        </div>
-        <div class="card-action">
-          <a href="#">This is a link</a>
-        </div>
-      </div>
-    </div>
-  </div>
+  <ul class="row">
+    <% for (let i=0; i<7; i++) { %>
+      <a href="/grades/<%= i+1 %>">
+        <li class="grade-image col s12 m5">
+            <img src="images/grade<%= i+1 %>.jpg" class="grade-photo">
+            <p class="grade-name">Grade <%= i+1 %></p>
+        </li>
+      </a>
+    <% } %>
+  </ul>

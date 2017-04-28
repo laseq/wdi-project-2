@@ -9,6 +9,7 @@ body {
   color: $theme-color-1;
   background-color: $theme-color-2;
   color: $theme-color-1;
+  background-image: url('../images/bgpattern.png');
   // background-image: url("../images/bg-2.png");
   //position: relative;
 
@@ -17,11 +18,9 @@ body {
   }
 
   .parallax-container {
-    height: 1000px;
-    width: 2000px;
+    height: 500px;
+    width: 100%;
   }
-
-
 
 
   nav {
@@ -34,13 +33,22 @@ body {
       color: $theme-color-2;
     }
 
-  }
+    a {
+      transition: all .5s ease-in-out !important;
+      -moz-transition: all .3s ease-in-out;
+      -webkit-transition: all .3s ease-in-out;
+      margin-right: 20px;
 
+      &:hover{
+        transform: scale(1.1) !important;
+      }
+    }
+  }
 }
 
 .grade-sort {
   display: inline-block;
-  color: $theme-color-2;
+  color: white;
   width: 12%;
   background-color: $theme-color-3;
   line-height: 50px;
@@ -112,20 +120,22 @@ body {
 .left-right-buttons {
   margin-top: 20px;
 }
-.prev, .next, .add-deck-btn, .remove-deck-btn, .edit-deck-btn, .remove-kanji-btn {
+.prev, .next, .add-deck-btn, .remove-deck-btn, .edit-deck-btn, .remove-kanji-btn, .add-kanji-btn {
   background-color: $theme-color-3;
   &:hover {
     background-color: $theme-color-3;
     opacity: 0.8;
   }
 }
-.prev, .next, .remove-deck-btn, .edit-deck-btn, .remove-kanji-btn {
+.prev, .next, .remove-deck-btn, .edit-deck-btn, .remove-kanji-btn, .add-kanji-btn {
   border-radius: 0px;
 }
 
-.remove-deck-btn, .edit-deck-btn, .remove-kanji-btn {
-  width: 200px;
-  margin-bottom: 20px;
+.remove-deck-btn, .edit-deck-btn, .remove-kanji-btn, .add-kanji-btn {
+  width: 180px;
+  max-width: 200px;
+  margin: 10px 5px 10px 0;
+
 }
 
 .show-deck-top-row {
@@ -149,11 +159,36 @@ body {
   text-align: center;
   background-color: #fffbf9;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transition: .5s ease-in-out;
+
+  overflow: hidden;
+  position: relative;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 
   .deck-photo {
-    //background-image: url('/images/deck-img.png');
-    max-width: 100%;
-    max-height: 100%;
+    // max-width: 100%;
+    // max-height: 75%;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: auto;
+    max-height: 75%;
+    min-width: 100%;
+  }
+
+  .add-icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+    max-height: 75%;
+    max-width: 75%;
   }
 
   .deck-name {
@@ -163,6 +198,52 @@ body {
     line-height: 0px;
     text-overflow: ellipsis;
     color: $theme-color-1;
+    position: absolute;
+    bottom:0;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+  }
+}
+
+.grade-image {
+  //border: 1px solid black;
+  display: inline-block;
+  width: 400px;
+  height: 200px;
+  margin: 20px;
+  text-align: center;
+  background-color: #fffbf9;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transition: .5s ease-in-out;
+  overflow: hidden;
+  position: relative;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  .grade-photo {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: auto;
+    max-height: 75%;
+    min-width: 100%;
+  }
+
+  .grade-name {
+    font-size: 24px;
+    font-weight: 500;
+    // margin-top: 0;
+    line-height: 0px;
+    text-overflow: ellipsis;
+    color: $theme-color-1;
+    position: absolute;
+    bottom: 0;
+    left: 5%;
 
   }
 }
@@ -174,7 +255,7 @@ body {
 }
 
 .container {
-  width: 80%;
+  //width: 80%;
 }
 
 .lesson-page-top {
@@ -196,6 +277,18 @@ body {
     font-size: 1.5em;
     position: relative;
     top: 0.1em;
+  }
+}
+
+.modal {
+  h1,h2,h3,h4,h5,h6,label {
+    color: $theme-color-3;
+  }
+  label.active {
+    color: $theme-color-3;
+  }
+  .btn {
+    background-color: $theme-color-3;
   }
 }
 
@@ -235,10 +328,6 @@ body {
 
 .kanjis-in-modal {
 
-  .modal-grade-num {
-
-  }
-
   .deck-modal-kanji-list {
 
     .deck-modal-kanji-li {
@@ -254,5 +343,28 @@ body {
 
   }
 
+}
+
+@media screen and (max-width: 640px) {
+
+  .kanji-main {
+    position: absolute;
+    top: 18%;
+  }
+
+  .carousel h1 {
+    font-size: 150px;
+  }
+
+  .jp-text{
+    margin-top: 18px;
+    font-size: 18px;
+  }
+  .en-text{
+    font-size: 18px;
+  }
+  .meaning-text {
+    font-size: 18px;
+  }
 
 }

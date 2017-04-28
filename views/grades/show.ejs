@@ -1,14 +1,16 @@
-<h1>Grades Show</h1>
-<%# This gets 'lessons' parsed from the grades controller %>
+<div class="container">
+  <h1>Grade <%= lessons[0].grade %> Lessons</h1>
+  <%# This gets 'lessons' parsed from the grades controller %>
 
-<% let lessonCount = 0 %>
-<ul>
-  <% lessons.forEach(lesson => { %>
-    <a href="/lessons/<%= lesson._id %>">
-      <li class="deck-image">
-        <img src="../images/deck-img.png" class="deck-photo">
-        <p class="deck-name">Lesson <%= lessonCount+=1 %></p>
-      </li>
-    </a>
-  <% }); %>
-</ul>
+  <% let lessonCount = 0 %>
+  <ul class="square-li-wrapper">
+    <% lessons.forEach(lesson => { %>
+      <a href="/lessons/<%= lesson._id %>">
+        <li class="deck-image col">
+          <img src="../images/lesson.jpg" class="deck-photo">
+          <p class="deck-name">Lesson <%= lessonCount+=1 %></p>
+        </li>
+      </a>
+    <% }); %>
+  </ul>
+</div>
