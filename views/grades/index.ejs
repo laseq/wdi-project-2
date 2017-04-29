@@ -5,10 +5,17 @@
   <ul class="row">
     <% for (let i=0; i<7; i++) { %>
       <a href="/grades/<%= i+1 %>">
+      <% if (i%2 === 0) { %>
         <li class="grade-image col s12 m5">
             <img src="images/grade<%= i+1 %>.jpg" class="grade-photo">
             <p class="grade-name">Grade <%= i+1 %></p>
         </li>
+      <% } else { %>
+        <li class="grade-image col s12 m5 offset-m1">
+            <img src="images/grade<%= i+1 %>.jpg" class="grade-photo">
+            <p class="grade-name">Grade <%= i+1 %></p>
+        </li>
+      <% } %>
       </a>
     <% } %>
   </ul>
