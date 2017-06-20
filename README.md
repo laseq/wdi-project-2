@@ -28,6 +28,9 @@
 
 My project of choice was a web app to enable learners of Japanese to improve their Kanji (Japanese symbol) competence. As a learner of the Japanese language I felt that it would be an exciting project to embark on. Such an app would fulfil the project requirements with RESTful routes and include some logic for lesson reviews.
 
+### Link to project
+[https://whispering-harbor-84338.herokuapp.com](https://whispering-harbor-84338.herokuapp.com).
+
 ## Tools used
 * Javascript/jQuery
 * Express JS

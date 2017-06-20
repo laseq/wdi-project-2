@@ -48,7 +48,7 @@ rp(options)
     });
   })
   .then(lessons => {
-    console.log(lessons)
+    console.log(lessons);
   })
   .catch(function(err) {
     // Collection creation failed
