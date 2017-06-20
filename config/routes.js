@@ -19,11 +19,6 @@ function secureRoute(req, res, next) {
   return next();
 }
 
-// router.route('/_grades')
-//   .get(grades.index);
-// router.route('/_grades/:id')
-//   .get(grades.show);
-
 router.route('/')
 .get(statics.index);
 
@@ -69,12 +64,5 @@ router.route('/kanjis/:kanjiid/:deckid')
 
 router.route('/proxies/deck')
   .get(proxy.decksIndex);
-//
-// router.route('/proxies/onekanji')
-//   .get(proxy.getKanji);
-//
-// router.route('/proxies/onekanjitodeck')
-//   .get(proxy.getKanji)
-//   .post(proxy.addKanji);
 
 module.exports = router;

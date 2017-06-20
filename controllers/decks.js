@@ -46,7 +46,7 @@ function decksShow(req, res, next) {
     return Deck.populate(deck, { path: 'kanjis'});
   });
 
-  const p2  = Kanji.find({ 'grade': '1' }).exec();
+  const p2  = Kanji.find({ grade: '1' }).exec();
   const p3  = Kanji.find({ grade: '2' }).exec();
   const p4  = Kanji.find({ grade: '3' }).exec();
   const p5  = Kanji.find({ grade: '4' }).exec();
@@ -57,9 +57,7 @@ function decksShow(req, res, next) {
   // Native Node method, NOT bluebird
   Promise.all([p1, p2, p3, p4, p5, p6, p7, p8])
   .then((values) => {
-
     const kanjiGradeArray = [values[1], values[2], values[3], values[4], values[5], values[6], values[7], values[8]];
-
 
     res.render('decks/show', {
       deck: values[0],
@@ -67,7 +65,6 @@ function decksShow(req, res, next) {
     });
   })
   .catch(next);
-
 }
 
 function decksEdit(req, res) {
