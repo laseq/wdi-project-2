@@ -236,7 +236,7 @@ The characters can be displayed by grade using the code below. When a grade butt
 ```
 
 
-##End Product
+## End Product
 
 ![](https://cloud.githubusercontent.com/assets/15388548/25550508/8aea3588-2c71-11e7-8152-66c50d93719d.png)
 **Lessons grouped by grades**
@@ -250,10 +250,10 @@ The characters can be displayed by grade using the code below. When a grade butt
 ![](https://cloud.githubusercontent.com/assets/15388548/25550337/35b4a1d0-2c70-11e7-9330-06d707c8bae1.png)
 **Kanji Browsing on the Kanji Index page**
 
-##Final Thoughts
+## Final Thoughts
 Although I fulfilled the requirements of the project brief, I did not manage to make Kanji Kaigou a full Kanji learning experience due to time constraints. I would therefore like to make the following proposed improvements to the app.
 
-###Proposed Improvements
+### Proposed Improvements
 
 * Functionality to keep track of a user's progress so that they can view their completed lessons and carry on learning from where they left off.
 * Improve the learning experience by having more content within lessons as it's available through the API.
