@@ -32,10 +32,10 @@ My project of choice was a web app to enable learners of Japanese to improve the
 [https://whispering-harbor-84338.herokuapp.com](https://whispering-harbor-84338.herokuapp.com).
 
 ## Tools used
-* Javascript/jQuery
-* Express JS
-* Node JS
-* Mongo DB & Mongoose
+* JavaScript/jQuery
+* Express.js
+* Node.js
+* MongoDB & Mongoose
 * HTML/CSS/SCSS
 * Materialize CSS Framework
 * BCrypt
